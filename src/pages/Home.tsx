@@ -14,24 +14,30 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="text-center space-y-6 py-12 relative overflow-hidden rounded-3xl bg-base-200">
+      <section className="text-center space-y-6 py-8 sm:py-12 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-base-200">
         <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/bg/1600/900')] opacity-10 bg-cover bg-center"></div>
         <div className="relative z-10 max-w-3xl mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-black tracking-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-3 sm:mb-4">
             Trade Skins.{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
               Securely.
             </span>
           </h1>
-          <p className="text-xl text-base-content/70">
+          <p className="text-base sm:text-lg md:text-xl text-base-content/70 px-2">
             The world's most advanced marketplace for buying and selling in-game
             items with instant delivery.
           </p>
-          <div className="flex justify-center gap-4 mt-8">
-            <button onClick={scrollToGames} className="btn btn-primary btn-lg">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+            <button
+              onClick={scrollToGames}
+              className="btn btn-primary btn-lg w-full sm:w-auto"
+            >
               Browse Games
             </button>
-            <Link to="/inventory" className="btn btn-outline btn-lg">
+            <Link
+              to="/inventory"
+              className="btn btn-outline btn-lg w-full sm:w-auto"
+            >
               Sell Items
             </Link>
           </div>
@@ -39,32 +45,32 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Stats / Features */}
-      <section className="grid md:grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <div className="card bg-base-200 shadow-xl border border-base-content/5">
-          <div className="card-body items-center text-center">
-            <Trophy className="w-12 h-12 text-secondary mb-4" />
-            <h3 className="card-title">Best Prices</h3>
-            <p>
+          <div className="card-body items-center text-center p-4 sm:p-6">
+            <Trophy className="w-10 h-10 sm:w-12 sm:h-12 text-secondary mb-3 sm:mb-4" />
+            <h3 className="card-title text-lg sm:text-xl">Best Prices</h3>
+            <p className="text-sm sm:text-base">
               Competitive marketplace with low fees ensures you get the most
               value.
             </p>
           </div>
         </div>
         <div className="card bg-base-200 shadow-xl border border-base-content/5">
-          <div className="card-body items-center text-center">
-            <Shield className="w-12 h-12 text-primary mb-4" />
-            <h3 className="card-title">100% Secure</h3>
-            <p>
+          <div className="card-body items-center text-center p-4 sm:p-6">
+            <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-3 sm:mb-4" />
+            <h3 className="card-title text-lg sm:text-xl">100% Secure</h3>
+            <p className="text-sm sm:text-base">
               Every transaction is protected by our escrow system and fraud
               detection.
             </p>
           </div>
         </div>
-        <div className="card bg-base-200 shadow-xl border border-base-content/5">
-          <div className="card-body items-center text-center">
-            <Zap className="w-12 h-12 text-accent mb-4" />
-            <h3 className="card-title">Instant Delivery</h3>
-            <p>
+        <div className="card bg-base-200 shadow-xl border border-base-content/5 sm:col-span-2 md:col-span-1">
+          <div className="card-body items-center text-center p-4 sm:p-6">
+            <Zap className="w-10 h-10 sm:w-12 sm:h-12 text-accent mb-3 sm:mb-4" />
+            <h3 className="card-title text-lg sm:text-xl">Instant Delivery</h3>
+            <p className="text-sm sm:text-base">
               Automated bots ensure your items are delivered within seconds.
             </p>
           </div>
@@ -72,13 +78,13 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Game Selection */}
-      <section id="games" className="space-y-8">
-        <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold">Select a Game</h2>
-          <div className="h-1 bg-base-content/10 flex-grow ml-8 rounded"></div>
+      <section id="games" className="space-y-6 sm:space-y-8">
+        <div className="flex items-center justify-between gap-4">
+          <h2 className="text-2xl sm:text-3xl font-bold">Select a Game</h2>
+          <div className="h-1 bg-base-content/10 flex-grow ml-4 sm:ml-8 rounded hidden sm:block"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {GAMES.map((game) => (
             <Link
               to={`/market/${game.id}`}

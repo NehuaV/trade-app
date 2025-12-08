@@ -24,33 +24,35 @@ export const Profile: React.FC = () => {
       acc[template.gameId].push({ ...item, template });
       return acc;
     },
-    {},
+    {}
   );
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
       {/* Profile Header */}
       <div className="card bg-base-200 shadow-xl overflow-hidden">
-        <div className="h-32 bg-gradient-to-r from-secondary to-primary opacity-80"></div>
-        <div className="card-body -mt-16 flex flex-row items-end gap-6 pb-6">
-          <div className="avatar online placeholder ring ring-base-100 ring-offset-base-100 ring-offset-2 rounded-full">
-            <div className="bg-neutral text-neutral-content rounded-full w-32 text-3xl">
+        <div className="h-24 sm:h-32 bg-gradient-to-r from-secondary to-primary opacity-80"></div>
+        <div className="card-body -mt-12 sm:-mt-16 flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6 pb-4 sm:pb-6">
+          <div className="avatar online placeholder ring ring-base-100 ring-offset-base-100 ring-offset-2 rounded-full flex-shrink-0">
+            <div className="bg-neutral text-neutral-content rounded-full w-24 h-24 sm:w-32 sm:h-32 text-2xl sm:text-3xl flex items-center justify-center">
               <span>ME</span>
             </div>
           </div>
-          <div className="flex-grow mb-2">
-            <h1 className="text-3xl font-bold">Demo User</h1>
-            <div className="flex items-center gap-4 text-sm opacity-70 mt-1">
+          <div className="flex-grow mb-2 min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold">Demo User</h1>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm opacity-70 mt-1">
               <span className="flex items-center gap-1">
-                <Calendar size={14} /> Joined Oct 2023
+                <Calendar size={12} className="sm:w-3.5 sm:h-3.5" /> Joined Oct
+                2023
               </span>
               <span className="flex items-center gap-1">
-                <Shield size={14} /> Verified Trader
+                <Shield size={12} className="sm:w-3.5 sm:h-3.5" /> Verified
+                Trader
               </span>
             </div>
           </div>
-          <div className="mb-4">
-            <Link to="/inventory" className="btn btn-primary">
+          <div className="mb-0 sm:mb-4 w-full sm:w-auto">
+            <Link to="/inventory" className="btn btn-primary w-full sm:w-auto">
               Manage Inventory
             </Link>
           </div>
@@ -58,8 +60,8 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* Showcase Section */}
-      <div className="space-y-6">
-        <h2 className="text-2xl font-bold border-b border-base-content/10 pb-2">
+      <div className="space-y-4 sm:space-y-6">
+        <h2 className="text-xl sm:text-2xl font-bold border-b border-base-content/10 pb-2">
           Item Showcase
         </h2>
 
@@ -76,27 +78,29 @@ export const Profile: React.FC = () => {
               const game = GAMES.find((g) => g.id === gameId);
 
               return (
-                <div key={gameId} className="bg-base-200 rounded-xl p-6">
-                  <h3 className="font-bold text-lg mb-4 opacity-80 flex items-center gap-2">
+                <div key={gameId} className="bg-base-200 rounded-xl p-4 sm:p-6">
+                  <h3 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 opacity-80 flex items-center gap-2 flex-wrap">
                     {game ? (
                       <>
                         <img
                           src={game.image}
                           alt={game.name}
-                          className="w-6 h-6 rounded-full object-cover"
+                          className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
                         />
                         {game.name}
                       </>
                     ) : (
                       `Game ID: ${gameId}`
                     )}
-                    Collection ({items.length})
+                    <span className="text-sm sm:text-base">
+                      Collection ({items.length})
+                    </span>
                   </h3>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2 sm:gap-4">
                     {items.slice(0, 6).map((item, idx) => (
                       <div
                         key={idx}
-                        className="card w-36 bg-base-100 shadow hover:scale-105 transition duration-200 cursor-pointer"
+                        className="card w-28 sm:w-36 bg-base-100 shadow hover:scale-105 transition duration-200 cursor-pointer"
                         title={item.template.name}
                         onClick={() => setSelectedItem(item)}
                       >
@@ -104,7 +108,7 @@ export const Profile: React.FC = () => {
                           <img
                             src={item.template.image}
                             alt="item"
-                            className="rounded-lg h-24 w-full object-cover"
+                            className="rounded-lg h-20 sm:h-24 w-full object-cover"
                           />
                         </figure>
                         <div className="card-body p-2 text-center">
@@ -118,8 +122,8 @@ export const Profile: React.FC = () => {
                       </div>
                     ))}
                     {items.length > 6 && (
-                      <div className="w-36 flex items-center justify-center bg-base-100/50 rounded-xl border border-base-content/10">
-                        <span className="text-sm font-bold opacity-60">
+                      <div className="w-28 sm:w-36 flex items-center justify-center bg-base-100/50 rounded-xl border border-base-content/10">
+                        <span className="text-xs sm:text-sm font-bold opacity-60">
                           +{items.length - 6} more
                         </span>
                       </div>
@@ -127,7 +131,7 @@ export const Profile: React.FC = () => {
                   </div>
                 </div>
               );
-            },
+            }
           )
         )}
       </div>
@@ -139,7 +143,7 @@ export const Profile: React.FC = () => {
           onClick={() => setSelectedItem(null)}
         >
           <div
-            className="modal-box relative max-w-lg bg-base-200 overflow-visible"
+            className="modal-box relative max-w-lg w-[calc(100%-2rem)] sm:w-full bg-base-200 overflow-visible mx-4"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -152,7 +156,11 @@ export const Profile: React.FC = () => {
             <div className="flex flex-col items-center text-center p-2">
               {/* Rarity Badge */}
               <div
-                className={`badge mb-4 ${selectedItem.template.rarity === "Ancient" ? "badge-error" : "badge-secondary"}`}
+                className={`badge mb-4 ${
+                  selectedItem.template.rarity === "Ancient"
+                    ? "badge-error"
+                    : "badge-secondary"
+                }`}
               >
                 {selectedItem.template.rarity}
               </div>

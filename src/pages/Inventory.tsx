@@ -66,27 +66,29 @@ export const Inventory: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 h-[calc(100vh-140px)]">
+    <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 min-h-[calc(100vh-140px)] lg:h-[calc(100vh-140px)]">
       {/* Inventory Grid */}
-      <div className="flex-grow bg-base-200 rounded-2xl p-6 overflow-y-auto custom-scrollbar">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+      <div className="flex-grow bg-base-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 overflow-y-auto custom-scrollbar">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center gap-2">
           Inventory{" "}
-          <span className="badge badge-secondary">{inventory.length}</span>
+          <span className="badge badge-secondary badge-sm sm:badge-md">
+            {inventory.length}
+          </span>
         </h2>
 
         {inventory.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-64 text-center opacity-50">
-            <Tag size={48} className="mb-4" />
-            <p className="text-lg">Your inventory is empty.</p>
-            <p className="text-sm">
+          <div className="flex flex-col items-center justify-center h-48 sm:h-64 text-center opacity-50 px-4">
+            <Tag size={40} className="sm:w-12 sm:h-12 mb-3 sm:mb-4" />
+            <p className="text-base sm:text-lg">Your inventory is empty.</p>
+            <p className="text-xs sm:text-sm">
               Buy items from the market to see them here.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
             {inventory.map((item) => {
               const template = ITEM_TEMPLATES.find(
-                (t) => t.id === item.templateId,
+                (t) => t.id === item.templateId
               );
               if (!template) return null;
               const isSelected = selectedItem?.id === item.id;
@@ -95,17 +97,19 @@ export const Inventory: React.FC = () => {
                 <div
                   key={item.id}
                   onClick={() => handleItemClick(item)}
-                  className={`card bg-base-100 shadow-sm cursor-pointer transition-all hover:scale-105 border-2 ${isSelected ? "border-primary" : "border-transparent"}`}
+                  className={`card bg-base-100 shadow-sm cursor-pointer transition-all hover:scale-105 border-2 ${
+                    isSelected ? "border-primary" : "border-transparent"
+                  }`}
                 >
                   <figure className="px-2 pt-2">
                     <img
                       src={template.image}
                       alt={template.name}
-                      className="rounded-lg h-32 w-full object-cover"
+                      className="rounded-lg h-24 sm:h-32 w-full object-cover"
                     />
                   </figure>
-                  <div className="card-body p-3 text-center">
-                    <h3 className="text-sm font-bold truncate">
+                  <div className="card-body p-2 sm:p-3 text-center">
+                    <h3 className="text-xs sm:text-sm font-bold truncate">
                       {template.name}
                     </h3>
                     <div className="badge badge-xs badge-outline mx-auto">
@@ -121,7 +125,11 @@ export const Inventory: React.FC = () => {
 
       {/* Item Details Aside */}
       <div
-        className={`w-full lg:w-96 bg-base-100 rounded-2xl shadow-2xl p-6 flex flex-col transition-all duration-300 ${selectedItem ? "translate-x-0 opacity-100" : "translate-x-10 opacity-50 lg:opacity-100 lg:translate-x-0"}`}
+        className={`w-full lg:w-96 bg-base-100 rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 flex flex-col transition-all duration-300 ${
+          selectedItem
+            ? "translate-x-0 opacity-100"
+            : "translate-x-10 opacity-50 lg:opacity-100 lg:translate-x-0"
+        } ${selectedItem ? "lg:block" : "hidden lg:block"}`}
       >
         {selectedItem ? (
           <>
@@ -134,50 +142,56 @@ export const Inventory: React.FC = () => {
 
             <div className="flex-grow">
               {/* Updated Header Layout: Image Left, Info Right */}
-              <div className="flex gap-5 mb-6">
-                <figure className="bg-gradient-to-br from-neutral to-base-300 w-32 h-32 rounded-xl flex items-center justify-center flex-shrink-0 border border-base-content/10 shadow-inner">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-4 sm:mb-6">
+                <figure className="bg-gradient-to-br from-neutral to-base-300 w-full sm:w-32 h-32 rounded-xl flex items-center justify-center flex-shrink-0 border border-base-content/10 shadow-inner mx-auto sm:mx-0">
                   <img
                     src={selectedItem.template.image}
                     alt={selectedItem.template.name}
-                    className="w-24 h-24 object-contain drop-shadow-xl hover:scale-110 transition duration-300"
+                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-xl hover:scale-110 transition duration-300"
                   />
                 </figure>
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-xl font-bold leading-tight mb-2">
+                <div className="flex flex-col justify-center text-center sm:text-left">
+                  <h2 className="text-lg sm:text-xl font-bold leading-tight mb-2">
                     {selectedItem.template.name}
                   </h2>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                     <span
-                      className={`badge ${selectedItem.template.rarity === "Ancient" ? "badge-error" : "badge-secondary"}`}
+                      className={`badge badge-sm sm:badge-md ${
+                        selectedItem.template.rarity === "Ancient"
+                          ? "badge-error"
+                          : "badge-secondary"
+                      }`}
                     >
                       {selectedItem.template.rarity}
                     </span>
-                    <span className="badge badge-ghost text-xs">
+                    <span className="badge badge-ghost badge-sm sm:badge-md text-xs">
                       ID: {selectedItem.template.id}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-base-200 rounded-lg p-4 mb-4">
-                <h4 className="font-bold text-sm mb-2 opacity-70">Traits</h4>
+              <div className="bg-base-200 rounded-lg p-3 sm:p-4 mb-4">
+                <h4 className="font-bold text-xs sm:text-sm mb-2 opacity-70">
+                  Traits
+                </h4>
                 <pre className="text-xs overflow-x-auto whitespace-pre-wrap font-mono opacity-80">
                   {JSON.stringify(selectedItem.traits, null, 2)}
                 </pre>
               </div>
 
-              <div className="text-sm opacity-60">
+              <div className="text-xs sm:text-sm opacity-60">
                 <p>Acquired: {selectedItem.acquiredDate}</p>
-                <p>Item ID: {selectedItem.id}</p>
+                <p className="truncate">Item ID: {selectedItem.id}</p>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-base-content/10">
+            <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-base-content/10">
               <button
-                className="btn btn-primary w-full btn-lg gap-2 shadow-lg shadow-primary/20"
+                className="btn btn-primary w-full btn-md sm:btn-lg gap-2 shadow-lg shadow-primary/20"
                 onClick={openSellModal}
               >
-                <DollarSign size={20} /> Sell Item
+                <DollarSign size={18} className="sm:w-5 sm:h-5" /> Sell Item
               </button>
             </div>
           </>
@@ -196,7 +210,7 @@ export const Inventory: React.FC = () => {
       {/* Sell Modal */}
       {isSellModalOpen && (
         <div className="modal modal-open bg-black/60 backdrop-blur-sm">
-          <div className="modal-box relative">
+          <div className="modal-box relative w-[calc(100%-2rem)] sm:w-full max-w-md mx-4">
             <button
               className="btn btn-sm btn-circle absolute right-2 top-2"
               onClick={() => setIsSellModalOpen(false)}

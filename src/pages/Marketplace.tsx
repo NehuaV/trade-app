@@ -82,27 +82,29 @@ export const Marketplace: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col md:flex-row gap-6 items-end justify-between bg-base-200 p-8 rounded-2xl">
-        <div className="flex items-center gap-6">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-end justify-between bg-base-200 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
+        <div className="flex items-center gap-3 sm:gap-6 flex-grow">
           <img
             src={game.image}
             alt={game.name}
-            className="w-24 h-24 object-cover rounded-xl shadow-lg"
+            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-cover rounded-xl shadow-lg flex-shrink-0"
           />
-          <div>
-            <h1 className="text-4xl font-bold">{game.name} Market</h1>
-            <p className="opacity-70 mt-1">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold truncate">
+              {game.name} Market
+            </h1>
+            <p className="opacity-70 mt-1 text-sm sm:text-base">
               Browse thousands of skins and items safely.
             </p>
           </div>
         </div>
-        <div className="stats shadow bg-base-100">
-          <div className="stat">
-            <div className="stat-title">Total Listings</div>
-            <div className="stat-value text-secondary">
+        <div className="stats shadow bg-base-100 w-full sm:w-auto">
+          <div className="stat py-3 sm:py-4">
+            <div className="stat-title text-xs sm:text-sm">Total Listings</div>
+            <div className="stat-value text-secondary text-xl sm:text-2xl md:text-3xl">
               {itemsWithPricing.reduce((acc, curr) => acc + curr.stock, 0)}
             </div>
-            <div className="stat-desc">
+            <div className="stat-desc text-xs sm:text-sm">
               For {itemsWithPricing.length} unique items
             </div>
           </div>
@@ -110,22 +112,22 @@ export const Marketplace: React.FC = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col md:flex-row gap-4 bg-base-200 p-4 rounded-xl sticky top-20 z-30 shadow-md">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 bg-base-200 p-3 sm:p-4 rounded-xl sticky top-16 sm:top-20 z-30 shadow-md">
         <div className="relative flex-grow">
           <Search
             className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-            size={20}
+            size={18}
           />
           <input
             type="text"
             placeholder="Search items..."
-            className="input input-bordered w-full pl-10"
+            className="input input-bordered w-full pl-9 sm:pl-10 text-sm sm:text-base"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <select
-          className="select select-bordered w-full md:w-48"
+          className="select select-bordered w-full sm:w-40 md:w-48 text-sm sm:text-base"
           value={rarityFilter}
           onChange={(e) => setRarityFilter(e.target.value)}
         >
@@ -135,13 +137,13 @@ export const Marketplace: React.FC = () => {
             </option>
           ))}
         </select>
-        <button className="btn btn-secondary btn-square">
-          <Filter size={20} />
+        <button className="btn btn-secondary btn-square btn-sm sm:btn-md">
+          <Filter size={18} className="sm:w-5 sm:h-5" />
         </button>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
         {itemsWithPricing.map((item) => (
           <Link
             to={`/item/${item.id}`}
@@ -150,7 +152,9 @@ export const Marketplace: React.FC = () => {
           >
             <figure className="px-4 pt-4 relative">
               <div
-                className={`absolute top-4 right-4 badge badge-outline bg-base-100 ${getRarityColor(item.rarity)}`}
+                className={`absolute top-4 right-4 badge badge-outline bg-base-100 ${getRarityColor(
+                  item.rarity
+                )}`}
               >
                 {item.rarity}
               </div>
@@ -160,26 +164,30 @@ export const Marketplace: React.FC = () => {
                 className="rounded-xl h-40 w-full object-cover group-hover:scale-105 transition duration-500"
               />
             </figure>
-            <div className="card-body p-4 gap-2">
+            <div className="card-body p-3 sm:p-4 gap-2">
               <h2
-                className="card-title text-base line-clamp-1"
+                className="card-title text-sm sm:text-base line-clamp-1"
                 title={item.name}
               >
                 {item.name}
               </h2>
-              <div className="flex items-center justify-between mt-2">
-                <div className="flex flex-col">
+              <div className="flex items-center justify-between mt-2 gap-2">
+                <div className="flex flex-col min-w-0 flex-1">
                   <span className="text-xs opacity-50">Starting at</span>
-                  <span className="text-lg font-bold text-secondary">
+                  <span className="text-base sm:text-lg font-bold text-secondary truncate">
                     {item.stock > 0
                       ? `${item.minPrice.toFixed(2)} NP`
                       : "Sold Out"}
                   </span>
                 </div>
                 <div
-                  className={`badge ${item.stock > 0 ? "badge-neutral" : "badge-error badge-outline"}`}
+                  className={`badge badge-sm sm:badge-md ${
+                    item.stock > 0
+                      ? "badge-neutral"
+                      : "badge-error badge-outline"
+                  } flex-shrink-0`}
                 >
-                  {item.stock} listings
+                  {item.stock}
                 </div>
               </div>
             </div>
