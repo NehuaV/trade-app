@@ -1,12 +1,12 @@
-import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { Home } from './pages/Home';
-import { Marketplace } from './pages/Marketplace';
-import { ItemDetail } from './pages/ItemDetail';
-import { Profile } from './pages/Profile';
-import { Inventory } from './pages/Inventory';
-import { BuyCurrency } from './pages/BuyCurrency';
+import React from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Home } from "./pages/Home";
+import { Marketplace } from "./pages/Marketplace";
+import { ItemDetail } from "./pages/ItemDetail";
+import { Profile } from "./pages/Profile";
+import { Inventory } from "./pages/Inventory";
+import { BuyCurrency } from "./pages/BuyCurrency";
 
 function App() {
   return (

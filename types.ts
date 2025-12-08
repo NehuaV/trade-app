@@ -17,7 +17,7 @@ export interface ItemTemplate {
   gameId: string;
   name: string;
   image: string;
-  rarity: 'Common' | 'Uncommon' | 'Rare' | 'Mythical' | 'Legendary' | 'Ancient';
+  rarity: "Common" | "Uncommon" | "Rare" | "Mythical" | "Legendary" | "Ancient";
   description: string;
   basePrice: number; // For graph simulation
 }
