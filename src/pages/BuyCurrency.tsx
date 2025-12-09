@@ -89,7 +89,7 @@ export const BuyCurrency: React.FC = () => {
                       <Check size={12} /> Best Value
                     </span>
                   ) : (
-                    <span>1:1 Exchange Rate</span>
+                    <span></span>
                   )}
                 </div>
 

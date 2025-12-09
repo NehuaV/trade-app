@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { GAMES } from "../data/mockData";
 import { ArrowRight, Trophy, Shield, Zap } from "lucide-react";
+import { RealtimeTradeHistory } from "../components/RealtimeTradeHistory";
 
 export const Home: React.FC = () => {
   const scrollToGames = () => {
@@ -75,6 +76,15 @@ export const Home: React.FC = () => {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* Real-time Trade History */}
+      <section className="space-y-4 sm:space-y-6">
+        <div className="flex items-center justify-between gap-4">
+          <h2 className="text-2xl sm:text-3xl font-bold">Live Activity</h2>
+          <div className="h-1 bg-base-content/10 flex-grow ml-4 sm:ml-8 rounded hidden sm:block"></div>
+        </div>
+        <RealtimeTradeHistory />
       </section>
 
       {/* Game Selection */}
