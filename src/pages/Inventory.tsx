@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
+import { toast } from "sonner";
 import { myInventoryAtom, sellItemAtom } from "../store";
 import { ITEM_TEMPLATES } from "../data/mockData";
 import { Tag, X, DollarSign, Info } from "lucide-react";
@@ -29,12 +30,16 @@ export const Inventory: React.FC = () => {
 
   const handleBuyerPaysChange = (val: string) => {
     setBuyerPays(val);
-    const amount = parseFloat(val);
-    if (!isNaN(amount)) {
-      // Fee is 10% (5% us + 5% dev). Seller receives 90%.
-      // Prices are stored internally as decimals, displayed as integers (*100)
-      const receive = amount * 0.9;
-      setSellerReceives(Math.round(receive).toString());
+    const amount = parseInt(val);
+    if (!isNaN(amount) && amount >= 3) {
+      // Fees: 5% each (us + dev) with 1 NP minimum each
+      // Our fee: max(1 NP, 5% of price)
+      // Dev fee: max(1 NP, 5% of price)
+      // Seller receives: price - our fee - dev fee (minimum 1 NP)
+      const ourFee = Math.max(1, Math.round(amount * 0.05));
+      const devFee = Math.max(1, Math.round(amount * 0.05));
+      const receive = Math.max(1, amount - ourFee - devFee);
+      setSellerReceives(receive.toString());
     } else {
       setSellerReceives("");
     }
@@ -42,12 +47,20 @@ export const Inventory: React.FC = () => {
 
   const handleSellerReceivesChange = (val: string) => {
     setSellerReceives(val);
-    const amount = parseFloat(val);
-    if (!isNaN(amount)) {
-      // Seller receives = BuyerPays * 0.90
-      // BuyerPays = SellerReceives / 0.90
-      const pay = amount / 0.9;
-      setBuyerPays(Math.round(pay).toString());
+    const amount = parseInt(val);
+    if (!isNaN(amount) && amount >= 1) {
+      // Seller receives = BuyerPays - ourFee - devFee
+      // Our fee = max(1, BuyerPays * 0.05)
+      // Dev fee = max(1, BuyerPays * 0.05)
+      // Solving: SellerReceives = BuyerPays - max(1, BuyerPays * 0.05) - max(1, BuyerPays * 0.05)
+      // For BuyerPays >= 20: SellerReceives = BuyerPays * 0.9
+      // For BuyerPays < 20: SellerReceives = BuyerPays - 2
+      // Reverse: If SellerReceives = BuyerPays * 0.9, then BuyerPays = SellerReceives / 0.9
+      // But need to account for minimum fees
+      let pay = Math.round(amount / 0.9);
+      // Ensure minimum price of 3
+      if (pay < 3) pay = amount + 2; // Fallback to minimum fees
+      setBuyerPays(pay >= 3 ? pay.toString() : "");
     } else {
       setBuyerPays("");
     }
@@ -55,9 +68,11 @@ export const Inventory: React.FC = () => {
 
   const handleConfirmSell = () => {
     if (!selectedItem || !buyerPays) return;
-    const amount = parseFloat(buyerPays);
-    if (isNaN(amount) || amount <= 0) {
-      alert("Please enter a valid price.");
+    const amount = parseInt(buyerPays);
+    if (isNaN(amount) || amount < 3) {
+      toast.error("Minimum price is 3 NP.", {
+        description: "Please enter a price of at least 3 NP to list your item.",
+      });
       return;
     }
     // Convert displayed price (integer) back to internal price (decimal)
@@ -65,7 +80,11 @@ export const Inventory: React.FC = () => {
     sellItem({ itemId: selectedItem.id, price });
     setIsSellModalOpen(false);
     setSelectedItem(null);
-    alert("Item listed on marketplace successfully!");
+    toast.success("Item listed successfully!", {
+      description: `${
+        selectedItem.template.name
+      } has been listed on the marketplace for ${amount.toLocaleString()} NP.`,
+    });
   };
 
   return (
@@ -231,13 +250,16 @@ export const Inventory: React.FC = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text font-bold">Buyer pays</span>
-                  <span className="label-text-alt">Market Price</span>
+                  <span className="label-text-alt">
+                    Market Price (Min: 3 NP)
+                  </span>
                 </label>
                 <div className="relative">
                   <input
                     type="number"
-                    step="0.01"
-                    placeholder="0.00"
+                    step="1"
+                    min="3"
+                    placeholder="3"
                     className="input input-bordered w-full pr-12 text-lg font-bold"
                     value={buyerPays}
                     onChange={(e) => handleBuyerPaysChange(e.target.value)}
@@ -260,14 +282,15 @@ export const Inventory: React.FC = () => {
                     You receive
                   </span>
                   <span className="label-text-alt flex items-center gap-1">
-                    <Info size={12} /> After 10% Fees
+                    <Info size={12} /> After Fees (5% each, min 1 NP)
                   </span>
                 </label>
                 <div className="relative">
                   <input
                     type="number"
-                    step="0.01"
-                    placeholder="0.00"
+                    step="1"
+                    min="1"
+                    placeholder="1"
                     className="input input-bordered input-secondary w-full pr-12 text-lg font-bold"
                     value={sellerReceives}
                     onChange={(e) => handleSellerReceivesChange(e.target.value)}
@@ -280,26 +303,37 @@ export const Inventory: React.FC = () => {
 
               {/* Fee Breakdown */}
               <div className="bg-base-200 p-3 rounded-lg text-xs space-y-1 opacity-70">
-                <div className="flex justify-between">
-                  <span>Nexus Market Fee (5%)</span>
-                  <span>
-                    -{" "}
-                    {Math.round(
-                      parseFloat(buyerPays || "0") * 0.05
-                    ).toLocaleString()}{" "}
-                    NP
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Developer Fee (5%)</span>
-                  <span>
-                    -{" "}
-                    {Math.round(
-                      parseFloat(buyerPays || "0") * 0.05
-                    ).toLocaleString()}{" "}
-                    NP
-                  </span>
-                </div>
+                {(() => {
+                  const buyerPaysAmount = parseInt(buyerPays || "0");
+                  const ourFee =
+                    buyerPaysAmount >= 3
+                      ? Math.max(1, Math.round(buyerPaysAmount * 0.05))
+                      : 0;
+                  const devFee =
+                    buyerPaysAmount >= 3
+                      ? Math.max(1, Math.round(buyerPaysAmount * 0.05))
+                      : 0;
+                  const sellerReceives =
+                    buyerPaysAmount >= 3
+                      ? Math.max(1, buyerPaysAmount - ourFee - devFee)
+                      : 0;
+                  return (
+                    <>
+                      <div className="flex justify-between">
+                        <span>Nexus Market Fee</span>
+                        <span>- {ourFee.toLocaleString()} NP</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Developer Fee</span>
+                        <span>- {devFee.toLocaleString()} NP</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>You Receive</span>
+                        <span>{sellerReceives.toLocaleString()} NP</span>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
 
               <button

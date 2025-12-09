@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { Marketplace } from "./pages/Marketplace";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/buy-points" element={<BuyCurrency />} />
         </Routes>
       </Layout>
+      <Toaster position="top-center" expand={true} richColors={true} />
     </Router>
   );
 }

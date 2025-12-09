@@ -1,5 +1,6 @@
 import React from "react";
 import { useAtom } from "jotai";
+import { toast } from "sonner";
 import { balanceAtom } from "../store";
 import { CreditCard, Check, Shield, Zap, Lock } from "lucide-react";
 
@@ -26,9 +27,9 @@ export const BuyCurrency: React.FC = () => {
       setBalance((prev) => prev + amount / 100);
       setIsProcessing(false);
       setProcessingAmount(null);
-      alert(
-        `Successfully added ${amount.toLocaleString()} Nexus Points to your wallet!`
-      );
+      toast.success("Points added successfully!", {
+        description: `${amount.toLocaleString()} Nexus Points have been added to your wallet.`,
+      });
     }, 1500);
   };
 
