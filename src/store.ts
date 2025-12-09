@@ -132,7 +132,7 @@ export const tradeHistoryAtom = atomWithStorage<Trade[]>(
       itemName: "Elementalist Lux",
       sellerId: "ProGamer_99",
       buyerId: "me",
-      price: 25.0,
+      price: 34.0, // Displays as 3400 NP
       date: "2024-02-15T10:30:00Z",
     },
     {
@@ -140,7 +140,7 @@ export const tradeHistoryAtom = atomWithStorage<Trade[]>(
       itemName: "K/DA All Out Ahri",
       sellerId: "SkinCollector",
       buyerId: "me",
-      price: 15.5,
+      price: 21.0, // Displays as 2100 NP
       date: "2024-02-20T14:22:00Z",
     },
     {
@@ -148,7 +148,7 @@ export const tradeHistoryAtom = atomWithStorage<Trade[]>(
       itemName: "Thavnairian Bustier",
       sellerId: "FF14_Fashion",
       buyerId: "me",
-      price: 5.0,
+      price: 7.5, // Displays as 750 NP
       date: "2024-02-25T09:15:00Z",
     },
   ]

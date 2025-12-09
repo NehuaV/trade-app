@@ -11,8 +11,7 @@ export const GAMES: Game[] = [
     id: "g1",
     name: "League of Legends",
     slug: "lol",
-    image:
-      "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt0c446b0f29a00ee5/5db05fa8347d1c6baa57be0e/RiotX_Announcement_1920x1080.jpg",
+    image: "https://cdn.akamai.steamstatic.com/steam/apps/1276790/header.jpg",
     description:
       "The world's most popular MOBA with a vast collection of champions.",
   },
@@ -63,8 +62,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t1",
     gameId: "g1",
     name: "Elementalist Lux",
-    image:
-      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_10.jpg",
+    image: "https://picsum.photos/seed/elementalist_lux/300/300",
     rarity: "Mythical",
     description: "An ultimate skin that transforms throughout the match.",
     basePrice: 2500,
@@ -73,8 +71,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t2",
     gameId: "g1",
     name: "K/DA All Out Ahri",
-    image:
-      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_7.jpg",
+    image: "https://picsum.photos/seed/kda_ahri/300/300",
     rarity: "Legendary",
     description: "Pop star sensation skin from the K/DA group.",
     basePrice: 1500,
@@ -83,8 +80,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t3",
     gameId: "g1",
     name: "Yasuo Nightbringer",
-    image:
-      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_6.jpg",
+    image: "https://picsum.photos/seed/yasuo_nightbringer/300/300",
     rarity: "Legendary",
     description: "Embrace the chaos within.",
     basePrice: 1800,
@@ -94,8 +90,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t4",
     gameId: "g2",
     name: "Night Pegasus Whistle",
-    image:
-      "https://ffxiv.consolegameswiki.com/mediawiki/images/thumb/5/5f/Night_Pegasus_Whistle_Icon.png/256px-Night_Pegasus_Whistle_Icon.png",
+    image: "https://picsum.photos/seed/night_pegasus/300/300",
     rarity: "Ancient",
     description: "Summons the rare Night Pegasus mount.",
     basePrice: 15000,
@@ -104,8 +99,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t5",
     gameId: "g2",
     name: "Thavnairian Bustier",
-    image:
-      "https://ffxiv.consolegameswiki.com/mediawiki/images/thumb/8/8a/Thavnairian_Bustier_Icon.png/256px-Thavnairian_Bustier_Icon.png",
+    image: "https://picsum.photos/seed/thavnairian_bustier/300/300",
     rarity: "Rare",
     description: "A beautiful silk bustier from the near east.",
     basePrice: 500,
@@ -115,8 +109,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t6",
     gameId: "g3",
     name: "Fallen Hero's Vengeance Cape",
-    image:
-      "https://cdn.akamai.steamstatic.com/steam/apps/553850/ss_1234567890.jpg",
+    image: "https://picsum.photos/seed/fallen_hero_cape/300/300",
     rarity: "Legendary",
     description: "A cape issued only to veterans of Malevelon Creek.",
     basePrice: 4000,
@@ -125,8 +118,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t7",
     gameId: "g3",
     name: "DP-40 Hero of the Federation",
-    image:
-      "https://cdn.akamai.steamstatic.com/steam/apps/553850/ss_0987654321.jpg",
+    image: "https://picsum.photos/seed/dp40_armor/300/300",
     rarity: "Rare",
     description: "Standard issue armor with extra padding for democracy.",
     basePrice: 1200,
@@ -136,8 +128,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t8",
     gameId: "g4",
     name: "Blackstar Weapon Skin",
-    image:
-      "https://bdocodex.com/static/images/items/icon_item_weapon_blackstar.png",
+    image: "https://picsum.photos/seed/blackstar_weapon/300/300",
     rarity: "Mythical",
     description: "A skin radiating dark energy from the abyss.",
     basePrice: 8500,
@@ -147,8 +138,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t9",
     gameId: "g5",
     name: "Diluc: Red Dead of Night",
-    image:
-      "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Outfit_Diluc_Red_Dead_of_Night.png",
+    image: "https://picsum.photos/seed/diluc_outfit/300/300",
     rarity: "Legendary",
     description: "A formal outfit for the Darknight Hero.",
     basePrice: 3000,
@@ -157,8 +147,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t10",
     gameId: "g5",
     name: "Jean: Sea Breeze Dandelion",
-    image:
-      "https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Outfit_Jean_Sea_Breeze_Dandelion.png",
+    image: "https://picsum.photos/seed/jean_outfit/300/300",
     rarity: "Rare",
     description: "Light summer wear for the Acting Grand Master.",
     basePrice: 2000,
@@ -168,8 +157,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t11",
     gameId: "g6",
     name: "Golden Pixel Engine",
-    image:
-      "https://cdn.akamai.steamstatic.com/steam/apps/107410/ss_1234567890.jpg",
+    image: "https://picsum.photos/seed/golden_pixel_engine/300/300",
     rarity: "Ancient",
     description: "The rarest ship component in the galaxy.",
     basePrice: 50000,

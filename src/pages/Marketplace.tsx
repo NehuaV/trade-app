@@ -176,7 +176,7 @@ export const Marketplace: React.FC = () => {
                   <span className="text-xs opacity-50">Starting at</span>
                   <span className="text-base sm:text-lg font-bold text-secondary truncate">
                     {item.stock > 0
-                      ? `${Math.round(item.minPrice * 100).toLocaleString()} NP`
+                      ? `${item.minPrice.toLocaleString()} NP`
                       : "Sold Out"}
                   </span>
                 </div>
