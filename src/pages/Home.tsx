@@ -15,12 +15,13 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="text-center space-y-6 py-8 sm:py-12 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-base-200">
-        <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/bg/1600/900')] opacity-10 bg-cover bg-center"></div>
+      <section className="text-center  py-8 sm:py-12 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-base-200">
+        <div className="absolute inset-0 bg-linear-to-br from-primary/20 via-secondary/20 to-accent/20"></div>
+        <div className="absolute inset-0 bg-linear-to-tl from-primary/10 via-transparent to-secondary/10"></div>
         <div className="relative z-10 max-w-3xl mx-auto px-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-3 sm:mb-4">
             Trade Skins.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-secondary to-primary">
               Securely.
             </span>
           </h1>
