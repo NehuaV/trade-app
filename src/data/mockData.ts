@@ -11,7 +11,8 @@ export const GAMES: Game[] = [
     id: "g1",
     name: "League of Legends",
     slug: "lol",
-    image: "https://picsum.photos/seed/lol_game_art/400/200",
+    image:
+      "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt0c446b0f29a00ee5/5db05fa8347d1c6baa57be0e/RiotX_Announcement_1920x1080.jpg",
     description:
       "The world's most popular MOBA with a vast collection of champions.",
   },
@@ -19,7 +20,7 @@ export const GAMES: Game[] = [
     id: "g2",
     name: "Final Fantasy XIV",
     slug: "ff14",
-    image: "https://picsum.photos/seed/ff14_realm/400/200",
+    image: "https://cdn.akamai.steamstatic.com/steam/apps/39210/header.jpg",
     description:
       "A critically acclaimed MMORPG with a rich story and immersive world.",
   },
@@ -27,7 +28,7 @@ export const GAMES: Game[] = [
     id: "g3",
     name: "Helldivers 2",
     slug: "helldivers2",
-    image: "https://picsum.photos/seed/helldivers_fight/400/200",
+    image: "https://cdn.akamai.steamstatic.com/steam/apps/553850/header.jpg",
     description:
       "Spread managed democracy across the galaxy in this co-op shooter.",
   },
@@ -35,7 +36,7 @@ export const GAMES: Game[] = [
     id: "g4",
     name: "Black Desert Online",
     slug: "bdo",
-    image: "https://picsum.photos/seed/bdo_combat/400/200",
+    image: "https://cdn.akamai.steamstatic.com/steam/apps/582660/header.jpg",
     description:
       "An open-world MMORPG with intense action combat and stunning graphics.",
   },
@@ -43,7 +44,7 @@ export const GAMES: Game[] = [
     id: "g5",
     name: "Genshin Impact",
     slug: "genshin",
-    image: "https://picsum.photos/seed/genshin_vista/400/200",
+    image: "https://cdn.akamai.steamstatic.com/steam/apps/1676180/header.jpg",
     description:
       "An open-world action RPG featuring elemental magic and character switching.",
   },
@@ -51,7 +52,7 @@ export const GAMES: Game[] = [
     id: "g6",
     name: "Stellar Drifters",
     slug: "indie1",
-    image: "https://picsum.photos/seed/indie_space/400/200",
+    image: "https://cdn.akamai.steamstatic.com/steam/apps/107410/header.jpg",
     description: "A procedurally generated space rogue-lite indie sensation.",
   },
 ];
@@ -62,105 +63,116 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t1",
     gameId: "g1",
     name: "Elementalist Lux",
-    image: "https://picsum.photos/seed/lux_skin/300/300",
+    image:
+      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_10.jpg",
     rarity: "Mythical",
     description: "An ultimate skin that transforms throughout the match.",
-    basePrice: 25.0,
+    basePrice: 2500,
   },
   {
     id: "t2",
     gameId: "g1",
     name: "K/DA All Out Ahri",
-    image: "https://picsum.photos/seed/ahri_skin/300/300",
+    image:
+      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_7.jpg",
     rarity: "Legendary",
     description: "Pop star sensation skin from the K/DA group.",
-    basePrice: 15.0,
+    basePrice: 1500,
   },
   {
     id: "t3",
     gameId: "g1",
     name: "Yasuo Nightbringer",
-    image: "https://picsum.photos/seed/yasuo_skin/300/300",
+    image:
+      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_6.jpg",
     rarity: "Legendary",
     description: "Embrace the chaos within.",
-    basePrice: 18.0,
+    basePrice: 1800,
   },
   // FF14
   {
     id: "t4",
     gameId: "g2",
     name: "Night Pegasus Whistle",
-    image: "https://picsum.photos/seed/pegasus_mount/300/300",
+    image:
+      "https://ffxiv.consolegameswiki.com/mediawiki/images/thumb/5/5f/Night_Pegasus_Whistle_Icon.png/256px-Night_Pegasus_Whistle_Icon.png",
     rarity: "Ancient",
     description: "Summons the rare Night Pegasus mount.",
-    basePrice: 150.0,
+    basePrice: 15000,
   },
   {
     id: "t5",
     gameId: "g2",
     name: "Thavnairian Bustier",
-    image: "https://picsum.photos/seed/bustier_glam/300/300",
+    image:
+      "https://ffxiv.consolegameswiki.com/mediawiki/images/thumb/8/8a/Thavnairian_Bustier_Icon.png/256px-Thavnairian_Bustier_Icon.png",
     rarity: "Rare",
     description: "A beautiful silk bustier from the near east.",
-    basePrice: 5.0,
+    basePrice: 500,
   },
   // Helldivers 2
   {
     id: "t6",
     gameId: "g3",
     name: "Fallen Hero's Vengeance Cape",
-    image: "https://picsum.photos/seed/cape_hd2/300/300",
+    image:
+      "https://cdn.akamai.steamstatic.com/steam/apps/553850/ss_1234567890.jpg",
     rarity: "Legendary",
     description: "A cape issued only to veterans of Malevelon Creek.",
-    basePrice: 40.0,
+    basePrice: 4000,
   },
   {
     id: "t7",
     gameId: "g3",
     name: "DP-40 Hero of the Federation",
-    image: "https://picsum.photos/seed/armor_hd2/300/300",
+    image:
+      "https://cdn.akamai.steamstatic.com/steam/apps/553850/ss_0987654321.jpg",
     rarity: "Rare",
     description: "Standard issue armor with extra padding for democracy.",
-    basePrice: 12.0,
+    basePrice: 1200,
   },
   // BDO
   {
     id: "t8",
     gameId: "g4",
     name: "Blackstar Weapon Skin",
-    image: "https://picsum.photos/seed/blackstar_wep/300/300",
+    image:
+      "https://bdocodex.com/static/images/items/icon_item_weapon_blackstar.png",
     rarity: "Mythical",
     description: "A skin radiating dark energy from the abyss.",
-    basePrice: 85.0,
+    basePrice: 8500,
   },
   // Genshin
   {
     id: "t9",
     gameId: "g5",
     name: "Diluc: Red Dead of Night",
-    image: "https://picsum.photos/seed/diluc_outfit/300/300",
+    image:
+      "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Outfit_Diluc_Red_Dead_of_Night.png",
     rarity: "Legendary",
     description: "A formal outfit for the Darknight Hero.",
-    basePrice: 30.0,
+    basePrice: 3000,
   },
   {
     id: "t10",
     gameId: "g5",
     name: "Jean: Sea Breeze Dandelion",
-    image: "https://picsum.photos/seed/jean_outfit/300/300",
+    image:
+      "https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Outfit_Jean_Sea_Breeze_Dandelion.png",
     rarity: "Rare",
     description: "Light summer wear for the Acting Grand Master.",
-    basePrice: 20.0,
+    basePrice: 2000,
   },
   // Indie
   {
     id: "t11",
     gameId: "g6",
     name: "Golden Pixel Engine",
-    image: "https://picsum.photos/seed/pixel_engine/300/300",
+    image:
+      "https://cdn.akamai.steamstatic.com/steam/apps/107410/ss_1234567890.jpg",
     rarity: "Ancient",
     description: "The rarest ship component in the galaxy.",
-    basePrice: 500.0,
+    basePrice: 50000,
   },
 ];
 
@@ -417,7 +429,10 @@ const generateGameItems = () => {
       // Generate a seed based on name to get consistent images for the same name
       const seed = name.replace(/[^a-zA-Z0-9]/g, "");
       const basePrice =
-        Math.floor(Math.random() * 150) + 5 + (rarity === "Ancient" ? 200 : 0);
+        (Math.floor(Math.random() * 150) +
+          5 +
+          (rarity === "Ancient" ? 200 : 0)) *
+        100;
 
       generatedTemplates.push({
         id: `gen_${game.id}_${i}`,
@@ -467,21 +482,21 @@ export const INITIAL_LISTINGS: MarketListing[] = [
     id: "l1",
     itemInstanceId: "i101",
     sellerId: "Summoner_99",
-    price: 145.0,
+    price: 145.0, // Stored as decimal, displayed as 14500 NP (*100)
     listedDate: "2024-03-01",
   },
   {
     id: "l2",
     itemInstanceId: "i102",
     sellerId: "Traveler_Aether",
-    price: 32.5,
+    price: 32.5, // Stored as decimal, displayed as 3250 NP (*100)
     listedDate: "2024-03-02",
   },
   {
     id: "l3",
     itemInstanceId: "i103",
     sellerId: "Space_Cowboy",
-    price: 490.0,
+    price: 490.0, // Stored as decimal, displayed as 49000 NP (*100)
     listedDate: "2024-03-03",
   },
 ];
@@ -531,7 +546,7 @@ INITIAL_LISTINGS.push({
   id: "l4",
   itemInstanceId: "i104",
   sellerId: "KPopFan",
-  price: 16.5,
+  price: 16.5, // Stored as decimal, displayed as 1650 NP (*100)
   listedDate: "2024-03-04",
 });
 
@@ -539,7 +554,7 @@ INITIAL_LISTINGS.push({
   id: "l5",
   itemInstanceId: "i105",
   sellerId: "Grinder_One",
-  price: 82.0,
+  price: 82.0, // Stored as decimal, displayed as 8200 NP (*100)
   listedDate: "2024-03-04",
 });
 
@@ -557,7 +572,7 @@ export const generatePriceHistory = (basePrice: number): PricePoint[] => {
 
     points.push({
       date: date.toISOString().split("T")[0],
-      price: Number(currentPrice.toFixed(2)),
+      price: Math.round(currentPrice),
     });
   }
   return points;
@@ -578,7 +593,8 @@ export const generateMockMarketData = () => {
     for (let i = 0; i < count; i++) {
       const itemId = `gen_i_${template.id}_${i}`;
       // Random price between 0.8 and 1.2 of base price
-      const price = template.basePrice * (0.8 + Math.random() * 0.4);
+      // Prices stored as decimals (divide by 100), displayed as integers (*100)
+      const price = (template.basePrice * (0.8 + Math.random() * 0.4)) / 100;
 
       items.push({
         id: itemId,
@@ -596,7 +612,7 @@ export const generateMockMarketData = () => {
         id: `gen_l_${template.id}_${i}`,
         itemInstanceId: itemId,
         sellerId: `User_${Math.floor(Math.random() * 10000)}`,
-        price: Number(price.toFixed(2)),
+        price: price,
         listedDate: new Date().toISOString(),
       });
     }

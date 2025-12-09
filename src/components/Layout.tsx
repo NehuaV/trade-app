@@ -24,11 +24,32 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             to="/"
             className="flex items-center gap-2 text-2xl font-bold tracking-tighter hover:opacity-80 transition"
           >
-            <div className="w-8 h-8 bg-gradient-to-tr from-secondary to-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-mono">N</span>
+            <div className="w-8 h-8 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
+              <svg
+                className="w-6 h-6 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" />
+                <path
+                  d="M2 17L12 22L22 17"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 12L12 17L22 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary">
-              NEXUS
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
+              MIDE
             </span>
           </Link>
 
@@ -66,7 +87,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
                 className="text-accent group-hover:rotate-12 transition"
               />
               <span className="font-mono text-accent">
-                {balance.toFixed(2)} NP
+                {Math.round(balance * 100).toLocaleString()} NP
               </span>
             </Link>
 
@@ -104,7 +125,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             >
               <Coins size={14} className="text-accent" />
               <span className="font-mono text-accent text-xs">
-                {balance.toFixed(0)} NP
+                {Math.round(balance * 100).toLocaleString()} NP
               </span>
             </Link>
             <button
@@ -166,7 +187,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
                 <Coins size={20} />
                 Add Funds
                 <span className="ml-auto font-mono text-sm">
-                  {balance.toFixed(2)} NP
+                  {Math.round(balance * 100).toLocaleString()} NP
                 </span>
               </Link>
             </div>
@@ -180,7 +201,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
       </main>
 
       {/* Footer */}
-      <footer className="footer p-6 sm:p-10 bg-neutral text-neutral-content mt-auto">
+      {/* <footer className="footer p-6 sm:p-10 bg-neutral text-neutral-content mt-auto">
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           <aside className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="w-12 h-12 bg-gradient-to-tr from-secondary to-primary rounded-xl flex items-center justify-center mb-4">
@@ -210,7 +231,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             <a className="link link-hover text-sm">Cookie policy</a>
           </nav>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

@@ -32,10 +32,10 @@ export const Marketplace: React.FC = () => {
       let minPrice = 0;
 
       if (stock > 0) {
-        // Find actual lowest price from listings
-        minPrice = Math.min(...templateListings.map((l) => l.price));
+        // Find actual lowest price from listings (stored as decimal, convert to display value)
+        minPrice = Math.min(...templateListings.map((l) => l.price * 100));
       } else {
-        // If out of stock, use base price for display purposes (optional)
+        // If out of stock, use base price for display purposes (already stored as display value)
         minPrice = template.basePrice;
       }
 
@@ -176,7 +176,7 @@ export const Marketplace: React.FC = () => {
                   <span className="text-xs opacity-50">Starting at</span>
                   <span className="text-base sm:text-lg font-bold text-secondary truncate">
                     {item.stock > 0
-                      ? `${item.minPrice.toFixed(2)} NP`
+                      ? `${Math.round(item.minPrice * 100).toLocaleString()} NP`
                       : "Sold Out"}
                   </span>
                 </div>

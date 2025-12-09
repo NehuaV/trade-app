@@ -55,7 +55,7 @@ export const ItemDetail: React.FC = () => {
     currentPage * itemsPerPage
   );
 
-  // Chart Data
+  // Chart Data - basePrice is already stored as display value (integer), chart generates around it
   const chartData = React.useMemo(
     () => generatePriceHistory(template.basePrice),
     [template]
@@ -146,7 +146,9 @@ export const ItemDetail: React.FC = () => {
                 </div>
                 <div className="stat-value text-secondary text-xl sm:text-2xl">
                   {relevantListings.length > 0
-                    ? `${relevantListings[0].price.toFixed(2)} NP`
+                    ? `${Math.round(
+                        relevantListings[0].price * 100
+                      ).toLocaleString()} NP`
                     : "N/A"}
                 </div>
               </div>
@@ -271,7 +273,7 @@ export const ItemDetail: React.FC = () => {
                       </div>
                     </td>
                     <td className="font-bold text-lg">
-                      {listing.price.toFixed(2)} NP
+                      {Math.round(listing.price * 100).toLocaleString()} NP
                     </td>
                     <td>
                       {listing.sellerId !== "me" ? (
@@ -333,7 +335,12 @@ export const ItemDetail: React.FC = () => {
             <p className="py-4">
               Are you sure you want to buy <b>{template.name}</b> for{" "}
               <span className="text-secondary font-bold">
-                {getSelectedListing()?.price.toFixed(2)} NP
+                {getSelectedListing()
+                  ? Math.round(
+                      getSelectedListing()!.price * 100
+                    ).toLocaleString()
+                  : "0"}{" "}
+                NP
               </span>
               ?
             </p>

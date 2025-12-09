@@ -11,10 +11,10 @@ export const BuyCurrency: React.FC = () => {
   );
 
   const packages = [
-    { amount: 10, cost: 10, popular: false },
-    { amount: 20, cost: 20, popular: true },
-    { amount: 50, cost: 50, popular: false },
-    { amount: 100, cost: 100, popular: false },
+    { amount: 1000, cost: 10, popular: false },
+    { amount: 2000, cost: 20, popular: true },
+    { amount: 5000, cost: 50, popular: false },
+    { amount: 10000, cost: 100, popular: false },
   ];
 
   const handlePurchase = (amount: number) => {
@@ -22,10 +22,13 @@ export const BuyCurrency: React.FC = () => {
     setProcessingAmount(amount);
     // Simulate API call
     setTimeout(() => {
-      setBalance((prev) => prev + amount);
+      // Convert displayed amount (integer) to internal amount (decimal)
+      setBalance((prev) => prev + amount / 100);
       setIsProcessing(false);
       setProcessingAmount(null);
-      alert(`Successfully added ${amount} Nexus Points to your wallet!`);
+      alert(
+        `Successfully added ${amount.toLocaleString()} Nexus Points to your wallet!`
+      );
     }, 1500);
   };
 

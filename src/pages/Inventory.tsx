@@ -31,8 +31,9 @@ export const Inventory: React.FC = () => {
     const amount = parseFloat(val);
     if (!isNaN(amount)) {
       // Fee is 10% (5% us + 5% dev). Seller receives 90%.
+      // Prices are stored internally as decimals, displayed as integers (*100)
       const receive = amount * 0.9;
-      setSellerReceives(receive.toFixed(2));
+      setSellerReceives(Math.round(receive).toString());
     } else {
       setSellerReceives("");
     }
@@ -45,7 +46,7 @@ export const Inventory: React.FC = () => {
       // Seller receives = BuyerPays * 0.90
       // BuyerPays = SellerReceives / 0.90
       const pay = amount / 0.9;
-      setBuyerPays(pay.toFixed(2));
+      setBuyerPays(Math.round(pay).toString());
     } else {
       setBuyerPays("");
     }
@@ -53,12 +54,13 @@ export const Inventory: React.FC = () => {
 
   const handleConfirmSell = () => {
     if (!selectedItem || !buyerPays) return;
-    const price = parseFloat(buyerPays);
-    if (isNaN(price) || price <= 0) {
+    const amount = parseFloat(buyerPays);
+    if (isNaN(amount) || amount <= 0) {
       alert("Please enter a valid price.");
       return;
     }
-
+    // Convert displayed price (integer) back to internal price (decimal)
+    const price = amount / 100;
     sellItem({ itemId: selectedItem.id, price });
     setIsSellModalOpen(false);
     setSelectedItem(null);
@@ -278,13 +280,21 @@ export const Inventory: React.FC = () => {
                 <div className="flex justify-between">
                   <span>Nexus Market Fee (5%)</span>
                   <span>
-                    - {(parseFloat(buyerPays || "0") * 0.05).toFixed(2)} NP
+                    -{" "}
+                    {Math.round(
+                      parseFloat(buyerPays || "0") * 0.05
+                    ).toLocaleString()}{" "}
+                    NP
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Developer Fee (5%)</span>
                   <span>
-                    - {(parseFloat(buyerPays || "0") * 0.05).toFixed(2)} NP
+                    -{" "}
+                    {Math.round(
+                      parseFloat(buyerPays || "0") * 0.05
+                    ).toLocaleString()}{" "}
+                    NP
                   </span>
                 </div>
               </div>
