@@ -96,15 +96,15 @@ export const BuyCurrency: React.FC = () => {
 
                   {/* Buy Button */}
                   <button
-                    className={`btn w-full btn-sm sm:btn-md ${
+                    className={`btn w-full btn-sm sm:btn-md flex items-center justify-center gap-2 ${
                       pkg.popular ? "btn-primary" : "btn-outline btn-primary"
-                    } ${isProcessingThis ? "loading" : ""}`}
+                    }`}
                     onClick={() => handlePurchase(pkg.amount)}
                     disabled={isProcessing}
                   >
                     {isProcessingThis ? (
                       <>
-                        <span className="loading loading-spinner"></span>
+                        <span className="loading loading-spinner !w-3 !h-3 sm:!w-4 sm:!h-4 border-2"></span>
                         Processing...
                       </>
                     ) : (
