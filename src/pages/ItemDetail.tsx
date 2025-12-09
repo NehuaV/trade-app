@@ -16,6 +16,7 @@ import {
 } from "recharts";
 import { Info, Tag, CheckCircle, AlertCircle } from "lucide-react";
 import { format } from "date-fns";
+import { ItemIcon } from "../utils/itemIcons";
 
 export const ItemDetail: React.FC = () => {
   const { itemId } = useParams<{ itemId: string }>();
@@ -94,10 +95,10 @@ export const ItemDetail: React.FC = () => {
       <div className="card lg:card-side bg-base-200 shadow-xl overflow-hidden border border-base-content/5">
         <figure className="bg-gradient-to-br from-neutral to-base-300 p-6 sm:p-8 lg:w-80 flex-shrink-0 flex items-center justify-center relative">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-          <img
-            src={template.image}
-            alt={template.name}
-            className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain drop-shadow-2xl hover:scale-105 transition duration-500"
+          <ItemIcon
+            iconName={template.image}
+            size="8rem"
+            className="text-secondary drop-shadow-2xl hover:scale-105 transition duration-500"
           />
         </figure>
         <div className="card-body p-4 sm:p-6">

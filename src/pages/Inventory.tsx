@@ -3,6 +3,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { myInventoryAtom, sellItemAtom } from "../store";
 import { ITEM_TEMPLATES } from "../data/mockData";
 import { Tag, X, DollarSign, Info } from "lucide-react";
+import { ItemIcon } from "../utils/itemIcons";
 
 export const Inventory: React.FC = () => {
   const [inventory] = useAtom(myInventoryAtom);
@@ -104,11 +105,13 @@ export const Inventory: React.FC = () => {
                   }`}
                 >
                   <figure className="px-2 pt-2">
-                    <img
-                      src={template.image}
-                      alt={template.name}
-                      className="rounded-lg h-24 sm:h-32 w-full object-cover"
-                    />
+                    <div className="rounded-lg h-24 sm:h-32 w-full flex items-center justify-center bg-gradient-to-br from-base-300 to-base-200">
+                      <ItemIcon
+                        iconName={template.image}
+                        size="3rem"
+                        className="text-secondary"
+                      />
+                    </div>
                   </figure>
                   <div className="card-body p-2 sm:p-3 text-center">
                     <h3 className="text-xs sm:text-sm font-bold truncate">
@@ -146,10 +149,10 @@ export const Inventory: React.FC = () => {
               {/* Updated Header Layout: Image Left, Info Right */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-4 sm:mb-6">
                 <figure className="bg-gradient-to-br from-neutral to-base-300 w-full sm:w-32 h-32 rounded-xl flex items-center justify-center flex-shrink-0 border border-base-content/10 shadow-inner mx-auto sm:mx-0">
-                  <img
-                    src={selectedItem.template.image}
-                    alt={selectedItem.template.name}
-                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-xl hover:scale-110 transition duration-300"
+                  <ItemIcon
+                    iconName={selectedItem.template.image}
+                    size="4rem"
+                    className="text-secondary drop-shadow-xl hover:scale-110 transition duration-300"
                   />
                 </figure>
                 <div className="flex flex-col justify-center text-center sm:text-left">

@@ -5,6 +5,7 @@ import { ITEM_TEMPLATES, GAMES } from "../data/mockData";
 import { User, Calendar, Shield, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ItemInstance, ItemTemplate } from "../types";
+import { ItemIcon } from "../utils/itemIcons";
 
 type ShowcaseItem = ItemInstance & { template: ItemTemplate };
 
@@ -105,11 +106,13 @@ export const Profile: React.FC = () => {
                         onClick={() => setSelectedItem(item)}
                       >
                         <figure className="px-2 pt-2">
-                          <img
-                            src={item.template.image}
-                            alt="item"
-                            className="rounded-lg h-20 sm:h-24 w-full object-cover"
-                          />
+                          <div className="rounded-lg h-20 sm:h-24 w-full flex items-center justify-center bg-gradient-to-br from-base-300 to-base-200">
+                            <ItemIcon
+                              iconName={item.template.image}
+                              size="2.5rem"
+                              className="text-secondary"
+                            />
+                          </div>
                         </figure>
                         <div className="card-body p-2 text-center">
                           <p className="text-xs font-bold truncate">
@@ -168,10 +171,10 @@ export const Profile: React.FC = () => {
               {/* Image */}
               <figure className="w-48 h-48 bg-gradient-to-br from-neutral to-base-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner border border-base-content/5 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-                <img
-                  src={selectedItem.template.image}
-                  alt={selectedItem.template.name}
-                  className="w-40 h-40 object-contain drop-shadow-xl group-hover:scale-110 transition duration-500"
+                <ItemIcon
+                  iconName={selectedItem.template.image}
+                  size="6rem"
+                  className="text-secondary drop-shadow-xl group-hover:scale-110 transition duration-500"
                 />
               </figure>
 

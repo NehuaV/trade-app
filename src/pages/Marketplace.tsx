@@ -4,6 +4,7 @@ import { GAMES, ITEM_TEMPLATES } from "../data/mockData";
 import { Search, Filter, ShoppingBag } from "lucide-react";
 import { useAtomValue } from "jotai";
 import { marketListingsAtom, allItemsAtom } from "../store";
+import { ItemIcon } from "../utils/itemIcons";
 
 export const Marketplace: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -158,11 +159,13 @@ export const Marketplace: React.FC = () => {
               >
                 {item.rarity}
               </div>
-              <img
-                src={item.image}
-                alt={item.name}
-                className="rounded-xl h-40 w-full object-cover group-hover:scale-105 transition duration-500"
-              />
+              <div className="rounded-xl h-40 w-full flex items-center justify-center bg-gradient-to-br from-base-300 to-base-200 group-hover:scale-105 transition duration-500">
+                <ItemIcon
+                  iconName={item.image}
+                  size="4rem"
+                  className="text-secondary"
+                />
+              </div>
             </figure>
             <div className="card-body p-3 sm:p-4 gap-2">
               <h2

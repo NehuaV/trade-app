@@ -62,7 +62,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t1",
     gameId: "g1",
     name: "Elementalist Lux",
-    image: "https://picsum.photos/seed/elementalist_lux/300/300",
+    image: "elementalist",
     rarity: "Mythical",
     description: "An ultimate skin that transforms throughout the match.",
     basePrice: 2500,
@@ -71,7 +71,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t2",
     gameId: "g1",
     name: "K/DA All Out Ahri",
-    image: "https://picsum.photos/seed/kda_ahri/300/300",
+    image: "ahri",
     rarity: "Legendary",
     description: "Pop star sensation skin from the K/DA group.",
     basePrice: 1500,
@@ -80,7 +80,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t3",
     gameId: "g1",
     name: "Yasuo Nightbringer",
-    image: "https://picsum.photos/seed/yasuo_nightbringer/300/300",
+    image: "yasuo",
     rarity: "Legendary",
     description: "Embrace the chaos within.",
     basePrice: 1800,
@@ -90,7 +90,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t4",
     gameId: "g2",
     name: "Night Pegasus Whistle",
-    image: "https://picsum.photos/seed/night_pegasus/300/300",
+    image: "whistle",
     rarity: "Ancient",
     description: "Summons the rare Night Pegasus mount.",
     basePrice: 15000,
@@ -99,7 +99,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t5",
     gameId: "g2",
     name: "Thavnairian Bustier",
-    image: "https://picsum.photos/seed/thavnairian_bustier/300/300",
+    image: "bustier",
     rarity: "Rare",
     description: "A beautiful silk bustier from the near east.",
     basePrice: 500,
@@ -109,7 +109,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t6",
     gameId: "g3",
     name: "Fallen Hero's Vengeance Cape",
-    image: "https://picsum.photos/seed/fallen_hero_cape/300/300",
+    image: "cape",
     rarity: "Legendary",
     description: "A cape issued only to veterans of Malevelon Creek.",
     basePrice: 4000,
@@ -118,7 +118,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t7",
     gameId: "g3",
     name: "DP-40 Hero of the Federation",
-    image: "https://picsum.photos/seed/dp40_armor/300/300",
+    image: "armor",
     rarity: "Rare",
     description: "Standard issue armor with extra padding for democracy.",
     basePrice: 1200,
@@ -128,7 +128,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t8",
     gameId: "g4",
     name: "Blackstar Weapon Skin",
-    image: "https://picsum.photos/seed/blackstar_weapon/300/300",
+    image: "weapon",
     rarity: "Mythical",
     description: "A skin radiating dark energy from the abyss.",
     basePrice: 8500,
@@ -138,7 +138,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t9",
     gameId: "g5",
     name: "Diluc: Red Dead of Night",
-    image: "https://picsum.photos/seed/diluc_outfit/300/300",
+    image: "diluc",
     rarity: "Legendary",
     description: "A formal outfit for the Darknight Hero.",
     basePrice: 3000,
@@ -147,7 +147,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t10",
     gameId: "g5",
     name: "Jean: Sea Breeze Dandelion",
-    image: "https://picsum.photos/seed/jean_outfit/300/300",
+    image: "jean",
     rarity: "Rare",
     description: "Light summer wear for the Acting Grand Master.",
     basePrice: 2000,
@@ -157,7 +157,7 @@ const MANUAL_TEMPLATES: ItemTemplate[] = [
     id: "t11",
     gameId: "g6",
     name: "Golden Pixel Engine",
-    image: "https://picsum.photos/seed/golden_pixel_engine/300/300",
+    image: "engine",
     rarity: "Ancient",
     description: "The rarest ship component in the galaxy.",
     basePrice: 50000,
@@ -391,6 +391,42 @@ const GAME_ASSETS = {
   },
 };
 
+// Map nouns to icon names
+const getIconForNoun = (noun: string): string => {
+  const nounLower = noun.toLowerCase();
+  if (nounLower.includes("sword") || nounLower.includes("blade"))
+    return "sword";
+  if (nounLower.includes("staff") || nounLower.includes("grimoire"))
+    return "wizardStaff";
+  if (nounLower.includes("bow")) return "bowArrow";
+  if (nounLower.includes("axe")) return "axe";
+  if (nounLower.includes("helmet") || nounLower.includes("helm"))
+    return "helmet";
+  if (nounLower.includes("armor") || nounLower.includes("vest")) return "armor";
+  if (nounLower.includes("cape") || nounLower.includes("cloak")) return "cape";
+  if (nounLower.includes("boots") || nounLower.includes("boot")) return "boots";
+  if (nounLower.includes("gloves") || nounLower.includes("gauntlet"))
+    return "gloves";
+  if (nounLower.includes("ring")) return "ring";
+  if (nounLower.includes("crown")) return "crown";
+  if (nounLower.includes("shield")) return "shield";
+  if (nounLower.includes("whistle") || nounLower.includes("mount"))
+    return "whistle";
+  if (nounLower.includes("crystal")) return "crystal";
+  if (nounLower.includes("gem") || nounLower.includes("pendant")) return "gem";
+  if (nounLower.includes("potion")) return "potion";
+  if (nounLower.includes("scroll") || nounLower.includes("book"))
+    return "scroll";
+  if (nounLower.includes("engine") || nounLower.includes("reactor"))
+    return "engine";
+  if (nounLower.includes("thruster") || nounLower.includes("module"))
+    return "orb";
+  if (nounLower.includes("shield")) return "shield";
+  if (nounLower.includes("cannon") || nounLower.includes("weapon"))
+    return "weapon";
+  return "default";
+};
+
 // Procedurally generate items to ensure at least 30 per game
 const generateGameItems = () => {
   const generatedTemplates: ItemTemplate[] = [];
@@ -414,8 +450,7 @@ const generateGameItems = () => {
       ] as any;
 
       const name = `${prefix} ${noun}`;
-      // Generate a seed based on name to get consistent images for the same name
-      const seed = name.replace(/[^a-zA-Z0-9]/g, "");
+      const iconName = getIconForNoun(noun);
       const basePrice =
         (Math.floor(Math.random() * 150) +
           5 +
@@ -426,7 +461,7 @@ const generateGameItems = () => {
         id: `gen_${game.id}_${i}`,
         gameId: game.id,
         name: name,
-        image: `https://picsum.photos/seed/${seed}/300/300`,
+        image: iconName,
         rarity: rarity,
         description: `A highly sought-after ${rarity.toLowerCase()} ${noun.toLowerCase()} from the ${prefix} collection.`,
         basePrice: basePrice,
