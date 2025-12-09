@@ -15,7 +15,7 @@ export const Marketplace: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [rarityFilter, setRarityFilter] = useState("All");
 
-  if (!game) return <div className="text-center py-20">Game not found</div>;
+  if (!game) return <div className="py-20 text-center">Game not found</div>;
 
   // 1. Filter Item Templates by Game
   const gameItemTemplates = ITEM_TEMPLATES.filter((t) => t.gameId === gameId);
@@ -83,23 +83,23 @@ export const Marketplace: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-end justify-between bg-base-200 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
-        <div className="flex items-center gap-3 sm:gap-6 flex-grow">
+      <div className="bg-base-200 flex flex-col items-start justify-between gap-4 rounded-xl p-4 sm:flex-row sm:items-end sm:gap-6 sm:rounded-2xl sm:p-6 md:p-8">
+        <div className="flex flex-grow items-center gap-3 sm:gap-6">
           <img
             src={game.image}
             alt={game.name}
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-cover rounded-xl shadow-lg flex-shrink-0"
+            className="h-16 w-16 flex-shrink-0 rounded-xl object-cover shadow-lg sm:h-20 sm:w-20 md:h-24 md:w-24"
           />
           <div className="min-w-0 flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold truncate">
+            <h1 className="truncate text-2xl font-bold sm:text-3xl md:text-4xl">
               {game.name} Market
             </h1>
-            <p className="opacity-70 mt-1 text-sm sm:text-base">
+            <p className="mt-1 text-sm opacity-70 sm:text-base">
               Browse thousands of skins and items safely.
             </p>
           </div>
         </div>
-        <div className="stats shadow bg-base-100 w-full sm:w-auto">
+        <div className="stats bg-base-100 w-full shadow sm:w-auto">
           <div className="stat py-3 sm:py-4">
             <div className="stat-title text-xs sm:text-sm">Total Listings</div>
             <div className="stat-value text-secondary text-xl sm:text-2xl md:text-3xl">
@@ -113,22 +113,22 @@ export const Marketplace: React.FC = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 bg-base-200 p-3 sm:p-4 rounded-xl sticky top-16 sm:top-20 z-30 shadow-md">
+      <div className="bg-base-200 sticky top-16 z-30 flex flex-col gap-3 rounded-xl p-3 shadow-md sm:top-20 sm:flex-row sm:gap-4 sm:p-4">
         <div className="relative flex-grow">
           <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400"
             size={18}
           />
           <input
             type="text"
             placeholder="Search items..."
-            className="input input-bordered w-full pl-9 sm:pl-10 text-sm sm:text-base"
+            className="input input-bordered w-full pl-9 text-sm sm:pl-10 sm:text-base"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <select
-          className="select select-bordered w-full sm:w-40 md:w-48 text-sm sm:text-base"
+          className="select select-bordered w-full text-sm sm:w-40 sm:text-base md:w-48"
           value={rarityFilter}
           onChange={(e) => setRarityFilter(e.target.value)}
         >
@@ -139,27 +139,27 @@ export const Marketplace: React.FC = () => {
           ))}
         </select>
         <button className="btn btn-secondary btn-square btn-sm sm:btn-md">
-          <Filter size={18} className="sm:w-5 sm:h-5" />
+          <Filter size={18} className="sm:h-5 sm:w-5" />
         </button>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {itemsWithPricing.map((item) => (
           <Link
             to={`/item/${item.id}`}
             key={item.id}
-            className="card bg-base-200 hover:bg-base-100 transition-colors duration-200 shadow-sm hover:shadow-xl border border-transparent hover:border-base-content/10 group"
+            className="card bg-base-200 hover:bg-base-100 hover:border-base-content/10 group border border-transparent shadow-sm transition-colors duration-200 hover:shadow-xl"
           >
-            <figure className="px-4 pt-4 relative">
+            <figure className="relative px-4 pt-4">
               <div
-                className={`absolute top-4 right-4 badge badge-outline bg-base-100 ${getRarityColor(
-                  item.rarity
+                className={`badge badge-outline bg-base-100 absolute top-4 right-4 ${getRarityColor(
+                  item.rarity,
                 )}`}
               >
                 {item.rarity}
               </div>
-              <div className="rounded-xl h-40 w-full flex items-center justify-center bg-gradient-to-br from-base-300 to-base-200 group-hover:scale-105 transition duration-500">
+              <div className="from-base-300 to-base-200 flex h-40 w-full items-center justify-center rounded-xl bg-gradient-to-br transition duration-500 group-hover:scale-105">
                 <ItemIcon
                   iconName={item.image}
                   size="4rem"
@@ -167,17 +167,17 @@ export const Marketplace: React.FC = () => {
                 />
               </div>
             </figure>
-            <div className="card-body p-3 sm:p-4 gap-2">
+            <div className="card-body gap-2 p-3 sm:p-4">
               <h2
-                className="card-title text-sm sm:text-base line-clamp-1"
+                className="card-title line-clamp-1 text-sm sm:text-base"
                 title={item.name}
               >
                 {item.name}
               </h2>
-              <div className="flex items-center justify-between mt-2 gap-2">
-                <div className="flex flex-col min-w-0 flex-1">
+              <div className="mt-2 flex items-center justify-between gap-2">
+                <div className="flex min-w-0 flex-1 flex-col">
                   <span className="text-xs opacity-50">Starting at</span>
-                  <span className="text-base sm:text-lg font-bold text-secondary truncate">
+                  <span className="text-secondary truncate text-base font-bold sm:text-lg">
                     {item.stock > 0
                       ? `${item.minPrice.toLocaleString()} NP`
                       : "Sold Out"}
@@ -199,8 +199,8 @@ export const Marketplace: React.FC = () => {
       </div>
 
       {itemsWithPricing.length === 0 && (
-        <div className="text-center py-20 opacity-50">
-          <ShoppingBag className="w-16 h-16 mx-auto mb-4" />
+        <div className="py-20 text-center opacity-50">
+          <ShoppingBag className="mx-auto mb-4 h-16 w-16" />
           <p className="text-xl">No items found matching your criteria.</p>
         </div>
       )}

@@ -8,7 +8,7 @@ export const BuyCurrency: React.FC = () => {
   const [balance, setBalance] = useAtom(balanceAtom);
   const [isProcessing, setIsProcessing] = React.useState(false);
   const [processingAmount, setProcessingAmount] = React.useState<number | null>(
-    null
+    null,
   );
 
   const packages = [
@@ -34,19 +34,19 @@ export const BuyCurrency: React.FC = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12 text-center">
+    <div className="mx-auto max-w-6xl px-4 py-6 text-center sm:px-6 sm:py-8 md:py-12">
       {/* Header Section */}
       <div className="mb-6 sm:mb-8 md:mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary">
+        <h1 className="from-secondary to-primary mb-2 bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent sm:mb-3 sm:text-3xl md:mb-4 md:text-4xl lg:text-5xl">
           Top Up Wallet
         </h1>
-        <p className="text-sm sm:text-base md:text-lg opacity-70 max-w-2xl mx-auto px-2 sm:px-4">
+        <p className="mx-auto max-w-2xl px-2 text-sm opacity-70 sm:px-4 sm:text-base md:text-lg">
           1 Nexus Point (NP) = 1 Euro. Safe and instant delivery.
         </p>
       </div>
 
       {/* Package Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8 sm:mb-12 md:mb-16">
+      <div className="mb-8 grid grid-cols-1 gap-3 sm:mb-12 sm:grid-cols-2 sm:gap-4 md:mb-16 md:gap-6 lg:grid-cols-4">
         {packages.map((pkg) => {
           const isProcessingThis =
             isProcessing && processingAmount === pkg.amount;
@@ -54,37 +54,37 @@ export const BuyCurrency: React.FC = () => {
             <div key={pkg.amount} className="relative">
               {/* Popular Badge */}
               {pkg.popular && (
-                <div className="badge badge-secondary absolute -top-3 left-1/2 -translate-x-1/2 z-[100] shadow-lg">
+                <div className="badge badge-secondary absolute -top-3 left-1/2 z-[100] -translate-x-1/2 shadow-lg">
                   Most Popular
                 </div>
               )}
 
               <div
-                className={`card bg-base-200 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 relative overflow-hidden ${
+                className={`card bg-base-200 relative overflow-hidden border-2 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
                   pkg.popular
-                    ? "border-secondary ring-2 ring-secondary/20"
+                    ? "border-secondary ring-secondary/20 ring-2"
                     : "border-base-300 hover:border-base-content/20"
                 }`}
               >
                 {/* Gradient Background for Popular */}
                 {pkg.popular && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-primary/5 opacity-50 z-0"></div>
+                  <div className="from-secondary/10 to-primary/5 absolute inset-0 z-0 bg-gradient-to-br opacity-50"></div>
                 )}
 
-                <div className="card-body items-center relative z-0 p-4 sm:p-6 md:p-8">
+                <div className="card-body relative z-0 items-center p-4 sm:p-6 md:p-8">
                   {/* Amount Display */}
                   <div className="mb-3 sm:mb-4">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-1 sm:mb-2">
+                    <h2 className="mb-1 text-xl font-black sm:mb-2 sm:text-2xl md:text-3xl lg:text-4xl">
                       {pkg.amount} NP
                     </h2>
-                    <div className="flex items-center justify-center gap-1 text-base sm:text-lg md:text-xl font-semibold">
+                    <div className="flex items-center justify-center gap-1 text-base font-semibold sm:text-lg md:text-xl">
                       <span className="opacity-60">{pkg.cost.toFixed(2)}</span>
                       <span className="opacity-40">€</span>
                     </div>
                   </div>
 
                   {/* Value Indicator */}
-                  <div className="text-xs opacity-50 mb-3 sm:mb-4">
+                  <div className="mb-3 text-xs opacity-50 sm:mb-4">
                     {pkg.amount === pkg.cost ? (
                       <span className="flex items-center justify-center gap-1">
                         <Check size={12} /> Best Value
@@ -96,7 +96,7 @@ export const BuyCurrency: React.FC = () => {
 
                   {/* Buy Button */}
                   <button
-                    className={`btn w-full btn-sm sm:btn-md flex items-center justify-center gap-2 ${
+                    className={`btn btn-sm sm:btn-md flex w-full items-center justify-center gap-2 ${
                       pkg.popular ? "btn-primary" : "btn-outline btn-primary"
                     }`}
                     onClick={() => handlePurchase(pkg.amount)}
@@ -104,12 +104,12 @@ export const BuyCurrency: React.FC = () => {
                   >
                     {isProcessingThis ? (
                       <>
-                        <span className="loading loading-spinner !w-3 !h-3 sm:!w-4 sm:!h-4 border-2"></span>
+                        <span className="loading loading-spinner !h-3 !w-3 border-2 sm:!h-4 sm:!w-4"></span>
                         Processing...
                       </>
                     ) : (
                       <>
-                        <Zap size={16} className="sm:w-4 sm:h-4" />
+                        <Zap size={16} className="sm:h-4 sm:w-4" />
                         Buy Now
                       </>
                     )}
@@ -122,18 +122,18 @@ export const BuyCurrency: React.FC = () => {
       </div>
 
       {/* Security Features */}
-      <div className="space-y-4 sm:space-y-6 max-w-4xl mx-auto">
+      <div className="mx-auto max-w-4xl space-y-4 sm:space-y-6">
         {/* Main Security Card */}
-        <div className="bg-base-300 rounded-xl p-6 sm:p-8 max-w-2xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-left">
-            <div className="p-3 sm:p-4 bg-gradient-to-br from-secondary to-primary rounded-full text-white flex-shrink-0">
-              <CreditCard size={24} className="sm:w-8 sm:h-8" />
+        <div className="bg-base-300 mx-auto max-w-2xl rounded-xl p-6 sm:p-8">
+          <div className="flex flex-col items-center gap-4 text-left sm:flex-row sm:gap-6">
+            <div className="from-secondary to-primary flex-shrink-0 rounded-full bg-gradient-to-br p-3 text-white sm:p-4">
+              <CreditCard size={24} className="sm:h-8 sm:w-8" />
             </div>
             <div className="flex-1 text-center sm:text-left">
-              <h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2">
+              <h3 className="mb-1 text-base font-bold sm:mb-2 sm:text-lg">
                 Secure Payment Processing
               </h3>
-              <p className="opacity-70 text-sm sm:text-base">
+              <p className="text-sm opacity-70 sm:text-base">
                 We use industry-standard encryption to protect your financial
                 data. Supports Visa, Mastercard, and PayPal.
               </p>
@@ -142,36 +142,36 @@ export const BuyCurrency: React.FC = () => {
         </div>
 
         {/* Feature Icons */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center gap-3 bg-base-200 rounded-lg p-4 sm:p-5">
-            <div className="p-2 sm:p-3 bg-primary/20 rounded-lg text-primary">
-              <Shield size={20} className="sm:w-6 sm:h-6" />
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="bg-base-200 flex flex-col items-center gap-3 rounded-lg p-4 sm:flex-row sm:p-5">
+            <div className="bg-primary/20 text-primary rounded-lg p-2 sm:p-3">
+              <Shield size={20} className="sm:h-6 sm:w-6" />
             </div>
             <div className="text-center sm:text-left">
-              <p className="font-semibold text-sm sm:text-base">Secure</p>
-              <p className="text-xs sm:text-sm opacity-60">SSL Encrypted</p>
+              <p className="text-sm font-semibold sm:text-base">Secure</p>
+              <p className="text-xs opacity-60 sm:text-sm">SSL Encrypted</p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 bg-base-200 rounded-lg p-4 sm:p-5">
-            <div className="p-2 sm:p-3 bg-secondary/20 rounded-lg text-secondary">
-              <Zap size={20} className="sm:w-6 sm:h-6" />
+          <div className="bg-base-200 flex flex-col items-center gap-3 rounded-lg p-4 sm:flex-row sm:p-5">
+            <div className="bg-secondary/20 text-secondary rounded-lg p-2 sm:p-3">
+              <Zap size={20} className="sm:h-6 sm:w-6" />
             </div>
             <div className="text-center sm:text-left">
-              <p className="font-semibold text-sm sm:text-base">Instant</p>
-              <p className="text-xs sm:text-sm opacity-60">
+              <p className="text-sm font-semibold sm:text-base">Instant</p>
+              <p className="text-xs opacity-60 sm:text-sm">
                 Immediate Delivery
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 bg-base-200 rounded-lg p-4 sm:p-5">
-            <div className="p-2 sm:p-3 bg-accent/20 rounded-lg text-accent">
-              <Lock size={20} className="sm:w-6 sm:h-6" />
+          <div className="bg-base-200 flex flex-col items-center gap-3 rounded-lg p-4 sm:flex-row sm:p-5">
+            <div className="bg-accent/20 text-accent rounded-lg p-2 sm:p-3">
+              <Lock size={20} className="sm:h-6 sm:w-6" />
             </div>
             <div className="text-center sm:text-left">
-              <p className="font-semibold text-sm sm:text-base">Protected</p>
-              <p className="text-xs sm:text-sm opacity-60">Your Data Safe</p>
+              <p className="text-sm font-semibold sm:text-base">Protected</p>
+              <p className="text-xs opacity-60 sm:text-sm">Your Data Safe</p>
             </div>
           </div>
         </div>

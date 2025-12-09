@@ -35,7 +35,7 @@ export const ItemDetail: React.FC = () => {
   const [buyModalOpen, setBuyModalOpen] = useState(false);
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const [selectedListingId, setSelectedListingId] = useState<string | null>(
-    null
+    null,
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -53,13 +53,13 @@ export const ItemDetail: React.FC = () => {
   const totalPages = Math.ceil(relevantListings.length / itemsPerPage);
   const paginatedListings = relevantListings.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    currentPage * itemsPerPage,
   );
 
   // Chart Data - basePrice is already stored as display value (integer), chart generates around it
   const chartData = React.useMemo(
     () => generatePriceHistory(template.basePrice),
-    [template]
+    [template],
   );
 
   const handleBuyClick = (listingId: string) => {
@@ -90,31 +90,31 @@ export const ItemDetail: React.FC = () => {
     listings.find((l) => l.id === selectedListingId);
 
   return (
-    <div className="space-y-6 relative">
+    <div className="relative space-y-6">
       {/* 1. Header Section: Image Left, Description Right */}
-      <div className="card lg:card-side bg-base-200 shadow-xl overflow-hidden border border-base-content/5">
-        <figure className="bg-gradient-to-br from-neutral to-base-300 p-6 sm:p-8 lg:w-80 flex-shrink-0 flex items-center justify-center relative">
-          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="card lg:card-side bg-base-200 border-base-content/5 overflow-hidden border shadow-xl">
+        <figure className="from-neutral to-base-300 relative flex flex-shrink-0 items-center justify-center bg-gradient-to-br p-6 sm:p-8 lg:w-80">
+          <div className="bg-grid-pattern absolute inset-0 opacity-10"></div>
           <ItemIcon
             iconName={template.image}
             size="8rem"
-            className="text-secondary drop-shadow-2xl hover:scale-105 transition duration-500"
+            className="text-secondary drop-shadow-2xl transition duration-500 hover:scale-105"
           />
         </figure>
         <div className="card-body p-4 sm:p-6">
-          <div className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6">
-            <div className="space-y-3 sm:space-y-4 flex-grow">
+          <div className="flex flex-col justify-between gap-4 sm:gap-6 lg:flex-row">
+            <div className="flex-grow space-y-3 sm:space-y-4">
               <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
                   {template.name}
                 </h1>
-                <div className="flex items-center gap-2 mt-2 opacity-75">
+                <div className="mt-2 flex items-center gap-2 opacity-75">
                   <img
                     src={game.image}
                     alt={game.name}
-                    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full"
+                    className="h-5 w-5 rounded-full sm:h-6 sm:w-6"
                   />
-                  <span className="font-medium text-sm sm:text-base">
+                  <span className="text-sm font-medium sm:text-base">
                     {game.name}
                   </span>
                 </div>
@@ -135,12 +135,12 @@ export const ItemDetail: React.FC = () => {
                 </span>
               </div>
 
-              <p className="text-sm sm:text-base lg:text-lg opacity-80 max-w-2xl">
+              <p className="max-w-2xl text-sm opacity-80 sm:text-base lg:text-lg">
                 {template.description}
               </p>
             </div>
 
-            <div className="stats stats-vertical shadow bg-base-100 border border-base-content/10 w-full lg:w-auto lg:min-w-[200px]">
+            <div className="stats stats-vertical bg-base-100 border-base-content/10 w-full border shadow lg:w-auto lg:min-w-[200px]">
               <div className="stat py-3 sm:py-4">
                 <div className="stat-title text-xs sm:text-sm">
                   Lowest Price
@@ -148,7 +148,7 @@ export const ItemDetail: React.FC = () => {
                 <div className="stat-value text-secondary text-xl sm:text-2xl">
                   {relevantListings.length > 0
                     ? `${Math.round(
-                        relevantListings[0].price * 100
+                        relevantListings[0].price * 100,
                       ).toLocaleString()} NP`
                     : "N/A"}
                 </div>
@@ -165,11 +165,11 @@ export const ItemDetail: React.FC = () => {
       </div>
 
       {/* 2. Chart Section */}
-      <div className="card bg-base-200 shadow-xl p-4 sm:p-6">
-        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
-          <Tag size={18} className="sm:w-5 sm:h-5" /> Price History
+      <div className="card bg-base-200 p-4 shadow-xl sm:p-6">
+        <h3 className="mb-3 flex items-center gap-2 text-lg font-bold sm:mb-4 sm:text-xl">
+          <Tag size={18} className="sm:h-5 sm:w-5" /> Price History
         </h3>
-        <div className="h-64 sm:h-72 w-full">
+        <div className="h-64 w-full sm:h-72">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData}>
               <defs>
@@ -209,11 +209,11 @@ export const ItemDetail: React.FC = () => {
       {/* 3. Listings Section */}
       <div className="card bg-base-200 shadow-xl">
         <div className="card-body p-4 sm:p-6">
-          <h3 className="card-title mb-3 sm:mb-4 text-lg sm:text-xl">
+          <h3 className="card-title mb-3 text-lg sm:mb-4 sm:text-xl">
             Market Listings ({relevantListings.length})
           </h3>
 
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="-mx-4 overflow-x-auto sm:mx-0">
             <table className="table w-full text-sm sm:text-base">
               <thead>
                 <tr>
@@ -229,7 +229,7 @@ export const ItemDetail: React.FC = () => {
                     <td>
                       <div className="flex items-center gap-2">
                         <div className="avatar placeholder">
-                          <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                          <div className="bg-neutral-focus text-neutral-content w-8 rounded-full">
                             <span>
                               {listing.sellerId.substring(0, 2).toUpperCase()}
                             </span>
@@ -256,24 +256,24 @@ export const ItemDetail: React.FC = () => {
                         </label>
                         <div
                           tabIndex={0}
-                          className="dropdown-content card card-compact w-64 p-2 shadow bg-base-300 text-base-content z-20"
+                          className="dropdown-content card card-compact bg-base-300 text-base-content z-20 w-64 p-2 shadow"
                         >
                           <div className="card-body">
-                            <h3 className="font-bold border-b border-base-content/10 pb-1 mb-1">
+                            <h3 className="border-base-content/10 mb-1 border-b pb-1 font-bold">
                               Item Traits
                             </h3>
-                            <pre className="text-xs bg-base-100 p-2 rounded overflow-x-auto">
+                            <pre className="bg-base-100 overflow-x-auto rounded p-2 text-xs">
                               {JSON.stringify(
                                 getInstanceTraits(listing.id),
                                 null,
-                                2
+                                2,
                               )}
                             </pre>
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td className="font-bold text-lg">
+                    <td className="text-lg font-bold">
                       {Math.round(listing.price * 100).toLocaleString()} NP
                     </td>
                     <td>
@@ -294,7 +294,7 @@ export const ItemDetail: React.FC = () => {
                 ))}
                 {paginatedListings.length === 0 && (
                   <tr>
-                    <td colSpan={4} className="text-center text-gray-500 py-8">
+                    <td colSpan={4} className="py-8 text-center text-gray-500">
                       No active listings for this item.
                     </td>
                   </tr>
@@ -305,7 +305,7 @@ export const ItemDetail: React.FC = () => {
 
           {/* Pagination Controls */}
           {totalPages > 1 && (
-            <div className="flex justify-center mt-4 btn-group">
+            <div className="btn-group mt-4 flex justify-center">
               <button
                 className="btn btn-sm"
                 disabled={currentPage === 1}
@@ -331,14 +331,14 @@ export const ItemDetail: React.FC = () => {
       {/* Buy Confirmation Modal */}
       {buyModalOpen && (
         <div className="modal modal-open bg-black/50">
-          <div className="modal-box w-[calc(100%-2rem)] sm:w-full max-w-md mx-4">
-            <h3 className="font-bold text-xl">Confirm Purchase</h3>
+          <div className="modal-box mx-4 w-[calc(100%-2rem)] max-w-md sm:w-full">
+            <h3 className="text-xl font-bold">Confirm Purchase</h3>
             <p className="py-4">
               Are you sure you want to buy <b>{template.name}</b> for{" "}
               <span className="text-secondary font-bold">
                 {getSelectedListing()
                   ? Math.round(
-                      getSelectedListing()!.price * 100
+                      getSelectedListing()!.price * 100,
                     ).toLocaleString()
                   : "0"}{" "}
                 NP
@@ -346,7 +346,7 @@ export const ItemDetail: React.FC = () => {
               ?
             </p>
             {errorMsg && (
-              <div className="alert alert-error text-sm mb-4">
+              <div className="alert alert-error mb-4 text-sm">
                 <AlertCircle size={16} /> {errorMsg}
               </div>
             )}
@@ -368,11 +368,11 @@ export const ItemDetail: React.FC = () => {
       {/* Success Modal */}
       {successModalOpen && (
         <div className="modal modal-open bg-black/50">
-          <div className="modal-box text-center w-[calc(100%-2rem)] sm:w-full max-w-md mx-4">
-            <div className="mx-auto w-16 h-16 bg-success/20 text-success rounded-full flex items-center justify-center mb-4">
+          <div className="modal-box mx-4 w-[calc(100%-2rem)] max-w-md text-center sm:w-full">
+            <div className="bg-success/20 text-success mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
               <CheckCircle size={32} />
             </div>
-            <h3 className="font-bold text-xl">Purchase Successful!</h3>
+            <h3 className="text-xl font-bold">Purchase Successful!</h3>
             <p className="py-4">The item has been added to your inventory.</p>
             <div className="modal-action justify-center">
               <Link to="/inventory" className="btn btn-primary">

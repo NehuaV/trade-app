@@ -15,18 +15,18 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
     location.pathname === path ? "text-secondary" : "";
 
   return (
-    <div className="min-h-screen bg-base-300 text-base-content font-sans flex flex-col">
+    <div className="bg-base-300 text-base-content flex min-h-screen flex-col font-sans">
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-content/10">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <nav className="bg-base-100/90 border-base-content/10 sticky top-0 z-50 border-b backdrop-blur">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-2xl font-bold tracking-tighter hover:opacity-80 transition"
+            className="flex items-center gap-2 text-2xl font-bold tracking-tighter transition hover:opacity-80"
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 shadow-lg">
               <svg
-                className="w-6 h-6 text-white"
+                className="h-6 w-6 text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -48,13 +48,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
                 />
               </svg>
             </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
+            <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
               MIDE
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 font-medium text-sm">
+          <div className="hidden items-center gap-8 text-sm font-medium md:flex">
             <Link
               to="/"
               className={`hover:text-secondary transition ${isActive("/")}`}
@@ -64,7 +64,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             <Link
               to="/profile"
               className={`hover:text-secondary transition ${isActive(
-                "/profile"
+                "/profile",
               )}`}
             >
               Profile
@@ -72,7 +72,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             <Link
               to="/inventory"
               className={`hover:text-secondary transition ${isActive(
-                "/inventory"
+                "/inventory",
               )}`}
             >
               Inventory
@@ -80,13 +80,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
           </div>
 
           {/* User & Balance */}
-          <div className="hidden md:flex items-center gap-4">
-            <Link to="/buy-points" className="btn btn-sm btn-ghost gap-2 group">
+          <div className="hidden items-center gap-4 md:flex">
+            <Link to="/buy-points" className="btn btn-sm btn-ghost group gap-2">
               <Coins
                 size={16}
-                className="text-accent group-hover:rotate-12 transition"
+                className="text-accent transition group-hover:rotate-12"
               />
-              <span className="font-mono text-accent">
+              <span className="text-accent font-mono">
                 {Math.round(balance * 100).toLocaleString()} NP
               </span>
             </Link>
@@ -96,13 +96,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
                 tabIndex={0}
                 className="btn btn-circle btn-ghost avatar placeholder"
               >
-                <div className="bg-neutral text-neutral-content rounded-full w-10 flex items-center justify-center">
+                <div className="bg-neutral text-neutral-content flex w-10 items-center justify-center rounded-full">
                   <User size={20} />
                 </div>
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+                className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
                   <Link to="/profile">Profile</Link>
@@ -118,13 +118,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
           </div>
 
           {/* Mobile Balance & Menu */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="flex items-center gap-2 md:hidden">
             <Link
               to="/buy-points"
               className="btn btn-xs btn-ghost gap-1.5 px-2"
             >
               <Coins size={14} className="text-accent" />
-              <span className="font-mono text-accent text-xs">
+              <span className="text-accent font-mono text-xs">
                 {Math.round(balance * 100).toLocaleString()} NP
               </span>
             </Link>
@@ -143,10 +143,10 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
       {isMobileMenuOpen && (
         <>
           <div
-            className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="md:hidden fixed inset-y-0 right-0 z-50 w-64 bg-base-100 shadow-2xl transform transition-transform duration-300 ease-in-out pt-20 px-6 pb-6 overflow-y-auto">
+          <div className="bg-base-100 fixed inset-y-0 right-0 z-50 w-64 transform overflow-y-auto px-6 pt-20 pb-6 shadow-2xl transition-transform duration-300 ease-in-out md:hidden">
             <div className="flex flex-col gap-2">
               <Link
                 to="/"
@@ -196,7 +196,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
       )}
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 sm:px-6 py-4 sm:py-8">
+      <main className="container mx-auto flex-grow px-4 py-4 sm:px-6 sm:py-8">
         {children}
       </main>
 

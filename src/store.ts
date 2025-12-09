@@ -24,7 +24,7 @@ export const allItemsAtom = atomWithStorage<ItemInstance[]>("nexus_items_v2", [
 // Active Market Listings
 export const marketListingsAtom = atomWithStorage<MarketListing[]>(
   "nexus_listings_v2",
-  initialListings
+  initialListings,
 );
 
 // Derived atom: My Inventory (Items I own that are NOT listed)
@@ -36,7 +36,7 @@ export const myInventoryAtom = atom((get) => {
   const listedItemIds = new Set(listings.map((l) => l.itemInstanceId));
 
   return allItems.filter(
-    (item) => item.ownerId === "me" && !listedItemIds.has(item.id)
+    (item) => item.ownerId === "me" && !listedItemIds.has(item.id),
   );
 });
 
@@ -58,7 +58,7 @@ export const sellItemAtom = atom(
       listedDate: new Date().toISOString(),
     };
     set(marketListingsAtom, (prev) => [...prev, newListing]);
-  }
+  },
 );
 
 // Action: Buy Item
@@ -90,7 +90,7 @@ export const buyItemAtom = atom(null, (get, set, listingId: string) => {
         };
       }
       return item;
-    })
+    }),
   );
 
   // Add to trade history
@@ -151,5 +151,5 @@ export const tradeHistoryAtom = atomWithStorage<Trade[]>(
       price: 7.5, // Displays as 750 NP
       date: "2024-02-25T09:15:00Z",
     },
-  ]
+  ],
 );

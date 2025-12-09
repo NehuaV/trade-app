@@ -88,10 +88,10 @@ export const Inventory: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 min-h-[calc(100vh-140px)] lg:h-[calc(100vh-140px)]">
+    <div className="flex min-h-[calc(100vh-140px)] flex-col gap-4 sm:gap-6 lg:h-[calc(100vh-140px)] lg:flex-row lg:gap-8">
       {/* Inventory Grid */}
-      <div className="flex-grow bg-base-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 overflow-y-auto custom-scrollbar">
-        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center gap-2">
+      <div className="bg-base-200 custom-scrollbar flex-grow overflow-y-auto rounded-xl p-4 sm:rounded-2xl sm:p-6">
+        <h2 className="mb-4 flex items-center gap-2 text-xl font-bold sm:mb-6 sm:text-2xl">
           Inventory{" "}
           <span className="badge badge-secondary badge-sm sm:badge-md">
             {inventory.length}
@@ -99,18 +99,18 @@ export const Inventory: React.FC = () => {
         </h2>
 
         {inventory.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-48 sm:h-64 text-center opacity-50 px-4">
-            <Tag size={40} className="sm:w-12 sm:h-12 mb-3 sm:mb-4" />
+          <div className="flex h-48 flex-col items-center justify-center px-4 text-center opacity-50 sm:h-64">
+            <Tag size={40} className="mb-3 sm:mb-4 sm:h-12 sm:w-12" />
             <p className="text-base sm:text-lg">Your inventory is empty.</p>
             <p className="text-xs sm:text-sm">
               Buy items from the market to see them here.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
             {inventory.map((item) => {
               const template = ITEM_TEMPLATES.find(
-                (t) => t.id === item.templateId
+                (t) => t.id === item.templateId,
               );
               if (!template) return null;
               const isSelected = selectedItem?.id === item.id;
@@ -119,12 +119,12 @@ export const Inventory: React.FC = () => {
                 <div
                   key={item.id}
                   onClick={() => handleItemClick(item)}
-                  className={`card bg-base-100 shadow-sm cursor-pointer transition-all hover:scale-105 border-2 ${
+                  className={`card bg-base-100 cursor-pointer border-2 shadow-sm transition-all hover:scale-105 ${
                     isSelected ? "border-primary" : "border-transparent"
                   }`}
                 >
                   <figure className="px-2 pt-2">
-                    <div className="rounded-lg h-24 sm:h-32 w-full flex items-center justify-center bg-gradient-to-br from-base-300 to-base-200">
+                    <div className="from-base-300 to-base-200 flex h-24 w-full items-center justify-center rounded-lg bg-gradient-to-br sm:h-32">
                       <ItemIcon
                         iconName={template.image}
                         size="3rem"
@@ -132,8 +132,8 @@ export const Inventory: React.FC = () => {
                       />
                     </div>
                   </figure>
-                  <div className="card-body p-2 sm:p-3 text-center">
-                    <h3 className="text-xs sm:text-sm font-bold truncate">
+                  <div className="card-body p-2 text-center sm:p-3">
+                    <h3 className="truncate text-xs font-bold sm:text-sm">
                       {template.name}
                     </h3>
                     <div className="badge badge-xs badge-outline mx-auto">
@@ -149,16 +149,16 @@ export const Inventory: React.FC = () => {
 
       {/* Item Details Aside */}
       <div
-        className={`w-full lg:w-96 bg-base-100 rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 flex flex-col transition-all duration-300 ${
+        className={`bg-base-100 flex w-full flex-col rounded-xl p-4 shadow-2xl transition-all duration-300 sm:rounded-2xl sm:p-6 lg:w-96 ${
           selectedItem
             ? "translate-x-0 opacity-100"
-            : "translate-x-10 opacity-50 lg:opacity-100 lg:translate-x-0"
+            : "translate-x-10 opacity-50 lg:translate-x-0 lg:opacity-100"
         } ${selectedItem ? "lg:block" : "hidden lg:block"}`}
       >
         {selectedItem ? (
           <>
             <button
-              className="btn btn-circle btn-ghost btn-sm absolute right-4 top-4 lg:hidden"
+              className="btn btn-circle btn-ghost btn-sm absolute top-4 right-4 lg:hidden"
               onClick={() => setSelectedItem(null)}
             >
               <X size={20} />
@@ -166,19 +166,19 @@ export const Inventory: React.FC = () => {
 
             <div className="flex-grow">
               {/* Updated Header Layout: Image Left, Info Right */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-4 sm:mb-6">
-                <figure className="bg-gradient-to-br from-neutral to-base-300 w-full sm:w-32 h-32 rounded-xl flex items-center justify-center flex-shrink-0 border border-base-content/10 shadow-inner mx-auto sm:mx-0">
+              <div className="mb-4 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:gap-5">
+                <figure className="from-neutral to-base-300 border-base-content/10 mx-auto flex h-32 w-full flex-shrink-0 items-center justify-center rounded-xl border bg-gradient-to-br shadow-inner sm:mx-0 sm:w-32">
                   <ItemIcon
                     iconName={selectedItem.template.image}
                     size="4rem"
-                    className="text-secondary drop-shadow-xl hover:scale-110 transition duration-300"
+                    className="text-secondary drop-shadow-xl transition duration-300 hover:scale-110"
                   />
                 </figure>
                 <div className="flex flex-col justify-center text-center sm:text-left">
-                  <h2 className="text-lg sm:text-xl font-bold leading-tight mb-2">
+                  <h2 className="mb-2 text-lg leading-tight font-bold sm:text-xl">
                     {selectedItem.template.name}
                   </h2>
-                  <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                  <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
                     <span
                       className={`badge badge-sm sm:badge-md ${
                         selectedItem.template.rarity === "Ancient"
@@ -195,34 +195,34 @@ export const Inventory: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-base-200 rounded-lg p-3 sm:p-4 mb-4">
-                <h4 className="font-bold text-xs sm:text-sm mb-2 opacity-70">
+              <div className="bg-base-200 mb-4 rounded-lg p-3 sm:p-4">
+                <h4 className="mb-2 text-xs font-bold opacity-70 sm:text-sm">
                   Traits
                 </h4>
-                <pre className="text-xs overflow-x-auto whitespace-pre-wrap font-mono opacity-80">
+                <pre className="overflow-x-auto font-mono text-xs whitespace-pre-wrap opacity-80">
                   {JSON.stringify(selectedItem.traits, null, 2)}
                 </pre>
               </div>
 
-              <div className="text-xs sm:text-sm opacity-60">
+              <div className="text-xs opacity-60 sm:text-sm">
                 <p>Acquired: {selectedItem.acquiredDate}</p>
                 <p className="truncate">Item ID: {selectedItem.id}</p>
               </div>
             </div>
 
-            <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-base-content/10">
+            <div className="border-base-content/10 mt-4 border-t pt-4 sm:mt-6 sm:pt-6">
               <button
-                className="btn btn-primary w-full btn-md sm:btn-lg gap-2 shadow-lg shadow-primary/20"
+                className="btn btn-primary btn-md sm:btn-lg shadow-primary/20 w-full gap-2 shadow-lg"
                 onClick={openSellModal}
               >
-                <DollarSign size={18} className="sm:w-5 sm:h-5" /> Sell Item
+                <DollarSign size={18} className="sm:h-5 sm:w-5" /> Sell Item
               </button>
             </div>
           </>
         ) : (
-          <div className="h-full flex flex-col items-center justify-center text-center opacity-40 p-8">
+          <div className="flex h-full flex-col items-center justify-center p-8 text-center opacity-40">
             <Info size={48} className="mb-4" />
-            <p className="font-bold text-lg">Select an item</p>
+            <p className="text-lg font-bold">Select an item</p>
             <p>
               Click on an item from your inventory to view details and sell
               options.
@@ -234,14 +234,14 @@ export const Inventory: React.FC = () => {
       {/* Sell Modal */}
       {isSellModalOpen && (
         <div className="modal modal-open bg-black/60 backdrop-blur-sm">
-          <div className="modal-box relative w-[calc(100%-2rem)] sm:w-full max-w-md mx-4">
+          <div className="modal-box relative mx-4 w-[calc(100%-2rem)] max-w-md sm:w-full">
             <button
-              className="btn btn-sm btn-circle absolute right-2 top-2"
+              className="btn btn-sm btn-circle absolute top-2 right-2"
               onClick={() => setIsSellModalOpen(false)}
             >
               ✕
             </button>
-            <h3 className="text-xl font-bold mb-6">
+            <h3 className="mb-6 text-xl font-bold">
               Sell {selectedItem?.template.name}
             </h3>
 
@@ -264,7 +264,7 @@ export const Inventory: React.FC = () => {
                     value={buyerPays}
                     onChange={(e) => handleBuyerPaysChange(e.target.value)}
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold opacity-50">
+                  <span className="absolute top-1/2 right-4 -translate-y-1/2 font-bold opacity-50">
                     NP
                   </span>
                 </div>
@@ -272,13 +272,13 @@ export const Inventory: React.FC = () => {
 
               {/* Arrow Icon */}
               <div className="flex justify-center opacity-50">
-                <div className="border-l-2 border-dashed border-base-content/30 h-8"></div>
+                <div className="border-base-content/30 h-8 border-l-2 border-dashed"></div>
               </div>
 
               {/* Input 2: You Receive */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold text-secondary">
+                  <span className="label-text text-secondary font-bold">
                     You receive
                   </span>
                   <span className="label-text-alt flex items-center gap-1">
@@ -295,14 +295,14 @@ export const Inventory: React.FC = () => {
                     value={sellerReceives}
                     onChange={(e) => handleSellerReceivesChange(e.target.value)}
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold opacity-50 text-secondary">
+                  <span className="text-secondary absolute top-1/2 right-4 -translate-y-1/2 font-bold opacity-50">
                     NP
                   </span>
                 </div>
               </div>
 
               {/* Fee Breakdown */}
-              <div className="bg-base-200 p-3 rounded-lg text-xs space-y-1 opacity-70">
+              <div className="bg-base-200 space-y-1 rounded-lg p-3 text-xs opacity-70">
                 {(() => {
                   const buyerPaysAmount = parseInt(buyerPays || "0");
                   const ourFee =
