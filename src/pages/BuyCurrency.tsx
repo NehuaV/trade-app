@@ -51,69 +51,70 @@ export const BuyCurrency: React.FC = () => {
           const isProcessingThis =
             isProcessing && processingAmount === pkg.amount;
           return (
-            <div
-              key={pkg.amount}
-              className={`card bg-base-200 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 relative overflow-hidden ${
-                pkg.popular
-                  ? "border-secondary ring-2 ring-secondary/20"
-                  : "border-base-300 hover:border-base-content/20"
-              }`}
-            >
+            <div key={pkg.amount} className="relative">
               {/* Popular Badge */}
               {pkg.popular && (
-                <div className="badge badge-secondary absolute -top-3 left-1/2 -translate-x-1/2 z-10 shadow-lg">
+                <div className="badge badge-secondary absolute -top-3 left-1/2 -translate-x-1/2 z-[100] shadow-lg">
                   Most Popular
                 </div>
               )}
 
-              {/* Gradient Background for Popular */}
-              {pkg.popular && (
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-primary/5 opacity-50"></div>
-              )}
+              <div
+                className={`card bg-base-200 shadow-xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 relative overflow-hidden ${
+                  pkg.popular
+                    ? "border-secondary ring-2 ring-secondary/20"
+                    : "border-base-300 hover:border-base-content/20"
+                }`}
+              >
+                {/* Gradient Background for Popular */}
+                {pkg.popular && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-primary/5 opacity-50 z-0"></div>
+                )}
 
-              <div className="card-body items-center relative z-0 p-4 sm:p-6 md:p-8">
-                {/* Amount Display */}
-                <div className="mb-3 sm:mb-4">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-1 sm:mb-2">
-                    {pkg.amount} NP
-                  </h2>
-                  <div className="flex items-center justify-center gap-1 text-base sm:text-lg md:text-xl font-semibold">
-                    <span className="opacity-60">{pkg.cost.toFixed(2)}</span>
-                    <span className="opacity-40">€</span>
+                <div className="card-body items-center relative z-0 p-4 sm:p-6 md:p-8">
+                  {/* Amount Display */}
+                  <div className="mb-3 sm:mb-4">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-1 sm:mb-2">
+                      {pkg.amount} NP
+                    </h2>
+                    <div className="flex items-center justify-center gap-1 text-base sm:text-lg md:text-xl font-semibold">
+                      <span className="opacity-60">{pkg.cost.toFixed(2)}</span>
+                      <span className="opacity-40">€</span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Value Indicator */}
-                <div className="text-xs opacity-50 mb-3 sm:mb-4">
-                  {pkg.amount === pkg.cost ? (
-                    <span className="flex items-center justify-center gap-1">
-                      <Check size={12} /> Best Value
-                    </span>
-                  ) : (
-                    <span></span>
-                  )}
-                </div>
+                  {/* Value Indicator */}
+                  <div className="text-xs opacity-50 mb-3 sm:mb-4">
+                    {pkg.amount === pkg.cost ? (
+                      <span className="flex items-center justify-center gap-1">
+                        <Check size={12} /> Best Value
+                      </span>
+                    ) : (
+                      <span></span>
+                    )}
+                  </div>
 
-                {/* Buy Button */}
-                <button
-                  className={`btn w-full btn-sm sm:btn-md ${
-                    pkg.popular ? "btn-primary" : "btn-outline btn-primary"
-                  } ${isProcessingThis ? "loading" : ""}`}
-                  onClick={() => handlePurchase(pkg.amount)}
-                  disabled={isProcessing}
-                >
-                  {isProcessingThis ? (
-                    <>
-                      <span className="loading loading-spinner"></span>
-                      Processing...
-                    </>
-                  ) : (
-                    <>
-                      <Zap size={16} className="sm:w-4 sm:h-4" />
-                      Buy Now
-                    </>
-                  )}
-                </button>
+                  {/* Buy Button */}
+                  <button
+                    className={`btn w-full btn-sm sm:btn-md ${
+                      pkg.popular ? "btn-primary" : "btn-outline btn-primary"
+                    } ${isProcessingThis ? "loading" : ""}`}
+                    onClick={() => handlePurchase(pkg.amount)}
+                    disabled={isProcessing}
+                  >
+                    {isProcessingThis ? (
+                      <>
+                        <span className="loading loading-spinner"></span>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Zap size={16} className="sm:w-4 sm:h-4" />
+                        Buy Now
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           );
