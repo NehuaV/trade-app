@@ -70,11 +70,11 @@ export const RealtimeTradeHistory: React.FC = () => {
   });
 
   useEffect(() => {
-    // Generate a new trade every 3-8 seconds with random intervals
+    // Generate a new trade every 0.5-3 seconds with random intervals
     let timeoutId: NodeJS.Timeout;
 
     const scheduleNextTrade = () => {
-      const delay = 3000 + Math.random() * 5000; // Random interval between 3-8 seconds
+      const delay = 500 + Math.random() * 3000; // Random interval between 0.5-3 seconds
       timeoutId = setTimeout(() => {
         const newTrade = generateRandomTrade();
         setTrades((prev) => {
