@@ -24,32 +24,50 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             to="/"
             className="flex items-center gap-2 text-2xl font-bold tracking-tighter transition hover:opacity-80"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 shadow-lg">
+            <div className="flex h-8 w-8 items-center justify-center">
               <svg
-                className="h-6 w-6 text-white"
-                viewBox="0 0 24 24"
+                className="h-8 w-8"
+                viewBox="0 0 100 100"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" />
+                <defs>
+                  <linearGradient
+                    id="hexagonGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stopColor="#a855f7" />
+                    <stop offset="50%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#22d3ee" />
+                  </linearGradient>
+                </defs>
                 <path
-                  d="M2 17L12 22L22 17"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z"
+                  fill="url(#hexagonGradient)"
+                  opacity="0.15"
                 />
                 <path
-                  d="M2 12L12 17L22 12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  d="M50 10 L88 28 L88 72 L50 90 L12 72 L12 28 Z"
+                  stroke="url(#hexagonGradient)"
+                  strokeWidth="4"
+                  fill="none"
                 />
+                {/* Letter E styled like circuitry */}
+                <path
+                  d="M35 35 H65 M35 50 H55 M35 65 H65"
+                  stroke="#e2e8f0"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
+                <circle cx="65" cy="35" r="3" fill="#22d3ee" />
+                <circle cx="65" cy="65" r="3" fill="#22d3ee" />
               </svg>
             </div>
             <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              MIDE
+              EMID
             </span>
           </Link>
 
